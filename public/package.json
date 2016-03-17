@@ -4,26 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "cd ../ && java -jar WhereDaGoldAt-0.0.1-SNAPSHOT.jar",
-  "bundle": "node_modules/.bin/browserify main.js -o bundle.js",
-  "sass": "node_modules/.bin/node-sass styles/styles.scss styles/styles.css",
+  "start": "cd ../ && java -jar .jar",
+ "bundle": "node_modules/.bin/browserify main.js -o bundle.js",
+   "sass": "node_modules/.bin/node-sass styles/styles.scss styles/styles.css",
   "watch": "node_modules/.bin/watchify main.js -o bundle.js & node_modules/.bin/node-sass styles/styles.scss styles/styles.css -w",
   "build": "npm run bundle & npm run sass",
-  "test": "say i work, you work, find my gold!!!!"
-  
-},
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "thriller": "say thriller is the shit"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cohen611/ThrillerApp.git"
+    "url": "git+https://github.com/jlock64/ThrillerApp.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Cohen611/ThrillerApp/issues"
   },
-  "homepage": "https://github.com/Cohen611/ThrillerApp#readme",
+  "homepage": "https://github.com/jlock64/ThrillerApp#readme",
   "dependencies": {
     "backbone": "^1.3.2",
     "jquery": "^2.2.2",
