@@ -94,7 +94,50 @@ module.exports = Backbone.View.extend({
   }
 });
 
+<<<<<<< HEAD
 },{"./model":11,"./templates":17,"backbone":13,"underscore":15}],5:[function(require,module,exports){
+=======
+},{"./model":12,"./templates":18,"backbone":14,"underscore":16}],5:[function(require,module,exports){
+var Backbone = require ('backbone');
+var _ = require('underscore');
+var tmpl = require ('./templates');
+var Model = require ('./model');
+
+module.exports = Backbone.View.extend({
+ el: '.formContent',
+ template: _.template(tmpl.createPost),
+ events:{
+   'submit .createButton': 'submitThriller'
+ },
+ submitThriller: function (event){
+   event.preventDefault();
+   this.model.set({
+     name: this.$el.find('input[name="name"]').val(),
+     title: this.$el.find('input[name="title"]').val(),
+    //  postDate: this.$el.find('input[name="postDate"]').val(),
+    //  date: this.$el.find('input[name="date"]').val(),
+     location: this.$el.find('input[name="location"]').val(),
+     image: this.$el.find('input[name="image"]').val(),
+     summary: this.$el.find('input[name="summary"]').val(),
+    //  favorite: this.$el.find('input[name="favorite"]').val(),
+    //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
+   });
+   this.model.save();
+   this.collection.add(this.model);
+   this.model = new Model({});
+  },
+  render: function (){
+    var markup = this.template();
+    this.$el.html(markup);
+    return this;
+  },
+  initialize: function() {
+    console.log('FORM VIEW');
+  }
+});
+
+},{"./model":12,"./templates":18,"backbone":14,"underscore":16}],6:[function(require,module,exports){
+>>>>>>> 1503a8530ccc8931786e0412e0dddc500aec739d
 var Backbone = require('backbone');
 var LikesModel = require('./likesModel');
 
