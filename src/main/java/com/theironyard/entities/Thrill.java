@@ -29,15 +29,27 @@ public class Thrill {
     @Column(nullable = false)
     String summary;
 
-    public Thrill(String title, LocalDateTime postTime, LocalDate date, String location, String summary) {
+    @ManyToOne
+    User user;
+
+    public Thrill(String title, LocalDateTime postTime, LocalDate date, String location, String summary, User user) {
         this.title = title;
         this.postTime = postTime;
         this.date = date;
         this.location = location;
         this.summary = summary;
+        this.user = user;
     }
 
     public Thrill() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -79,4 +91,14 @@ public class Thrill {
     public void setSummary(String summary) {
         this.summary = summary;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+
 }
