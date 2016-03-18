@@ -48,17 +48,18 @@ public class ThrillerAppController {
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public User login(@RequestBody User user, HttpSession session, String name, String passwordHash) throws Exception {
+    public User login(@RequestBody User user, HttpSession session) throws Exception {
         User existingUser = users.findByName(user.getName());
         if (existingUser == null) {
-            existingUser = user = new User(name, PasswordStorage.createHash(passwordHash));
+            user.setPassword(PasswordStorage.createHash(user.getPassword()));
             users.save(user);
+            existingUser = user;
         }
-        else if (!PasswordStorage.verifyPassword(passwordHash, user.getPasswordHash())) {
+        else if (!PasswordStorage.verifyPassword(user.getPassword(), existingUser.getPassword())) {
             throw new Exception("incorrect password!");
         }
         session.setAttribute("name", existingUser.getName());
-        return existingUser; //replace with return redirect / ?
+        return existingUser;
     }
 
     @RequestMapping(path = "/login", method = RequestMethod.GET)
@@ -68,9 +69,8 @@ public class ThrillerAppController {
     }
 
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
-    public String logout(HttpSession session) {
+    public void logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
     }
 
     @RequestMapping(path = "/user", method = RequestMethod.GET)
@@ -79,9 +79,11 @@ public class ThrillerAppController {
     }
 
     @RequestMapping(path = "/user", method = RequestMethod.POST)
-    public void addUser(@RequestBody User user) {
+    public void addUser(@RequestBody User user) throws PasswordStorage.CannotPerformOperationException {
+        user.setPassword(PasswordStorage.createHash(user.getPassword()));
         users.save(user);
     }
+
     @RequestMapping(path = "/user/{id}", method = RequestMethod.PUT)
     public void updateUser(@RequestBody User user, @PathVariable("id") int id) {
         users.save(user);
@@ -98,12 +100,11 @@ public class ThrillerAppController {
     }
 
     @RequestMapping(path = "/thrill", method = RequestMethod.POST)
-    public Thrill addThrill(@RequestBody Thrill thrill, HttpSession session) {
+    public void addThrill(@RequestBody Thrill thrill, HttpSession session) {
         String name = (String) session.getAttribute("name");
         User user = users.findByName(name);
         thrill.setUser(user);
         thrills.save(thrill);
-        return thrill;
     }
 
     @RequestMapping(path = "/thrill", method = RequestMethod.GET)
@@ -111,33 +112,36 @@ public class ThrillerAppController {
         return (List<Thrill>) thrills.findAll();
     }
 
-//    @RequestMapping(path = "/thrill", method = RequestMethod.GET)
-//    public Thrill getThrill(int id) {
-//        return thrills.findOne(id);
-//    }
-//    @RequestMapping(path = "/thrill", method = RequestMethod.PUT)
-//    public void editThrill (@RequestBody Thrill thrill) {
-//        thrills.save(thrill);
-//    }
+    @RequestMapping(path = "/thrill/{id}", method = RequestMethod.GET)
+    public Thrill getThrill(@PathVariable("id") int id) {
+        return thrills.findOne(id);
+    }
+
+
+    @RequestMapping(path = "/thrill/{id}", method = RequestMethod.DELETE)
+    public void deleteThrill(@PathVariable("id") int id) {
+        thrills.delete(id);
+    }
+
+    @RequestMapping(path = "/thrill/{id}", method = RequestMethod.PUT)
+    public void editThrill(@RequestBody Thrill thrill, @PathVariable("id") int id) {
+        thrills.save(thrill);
+    }
 
     @RequestMapping(path = "/favorite", method = RequestMethod.POST)
-    public String favorite(HttpSession session, int id) {
+    public void favorite(HttpSession session, int id) {
         String name = (String) session.getAttribute("name");
         if (name != null) {
             User user = users.findByName(name);
             Thrill thrill = thrills.findOne(id);
             favorites.save(new Favorite(user, thrill));
         }
-        return "redirect:/";
     }
 
-    //need to fix the thrill route for addThrill, run the test to make sure its working. maybe the test is written wrong with the LocalDateTime.now??
-
-    //need to fix the thrill routes get(one), put, and make a delete
 
     //need a Put route for favorite? to be able to toggle/edit whether or not you still "favorite" something
 
     //need a Get route for favorite to findAll? to be able to get the total amount of favorites for a thrill item and then rank by amount of favorites Ascending order
 
-    //need the following routes for photo: get(one), get(all), delete ? dont need put since you dont edit photo uploads.
+    //need the following routes for photo: get(one), get(all), delete ? don't need put since you dont edit photo uploads.
 }
