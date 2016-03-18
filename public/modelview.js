@@ -4,7 +4,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'article',
-  template: _.template(tmpl.thriller),
+  template: _.template(tmpl.post),
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
   },

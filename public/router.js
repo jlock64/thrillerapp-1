@@ -2,8 +2,9 @@ var Backbone = require('backbone');
 var LikesCollection = require('./likesCollection');
 var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
-var ThrillerCollectionView = require('./collectionView'):
-var LoginView = require('./loginFormView'):
+var ThrillerCollectionView = require('./collectionView');
+var LoginView = require('./loginFormView');
+var FormView = require('./formView');
 
 module.exports = Backbone.Router.extend({
   subview: null,
@@ -29,6 +30,7 @@ module.exports = Backbone.Router.extend({
     thrillerCol.fetch().then(function(data) {
       console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
+      that.renderSubview(new FormView({}));
     });
   },
   login: function() {
@@ -37,7 +39,7 @@ module.exports = Backbone.Router.extend({
     loginView.fetch().then(function(data) {
       that.renderSubview(new LoginView({view: loginView}));
     });
-  }
+  },
   renderSubview: function(subview) {
     this.subview && this.subview.remove();
     this.subview = subview;
