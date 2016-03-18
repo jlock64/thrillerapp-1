@@ -5,7 +5,7 @@ var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
 var ThrillerCollectionView = require('./collectionView');
 var LoginView = require('./loginFormView');
-var FormView = require('./formView');
+var FormView = require('./formview');
 
 module.exports = Backbone.Router.extend({
   subview: null,

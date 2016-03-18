@@ -11,7 +11,7 @@ module.exports = Backbone.View.extend({
  },
  submitThriller: function (event){
    event.preventDefault();
-   this.model.set({
+   var objToSave = {
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
     //  postDate: this.$el.find('input[name="postDate"]').val(),
@@ -21,10 +21,10 @@ module.exports = Backbone.View.extend({
      summary: this.$el.find('input[name="summary"]').val(),
     //  favorite: this.$el.find('input[name="favorite"]').val(),
     //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
-   });
-   this.model.save();
-   this.collection.add(this.model);
-   this.model = new Model({});
+   };
+   var myModel = new Model(objToSave);
+   myModel.save();
+   this.collection.add(myModel);
   },
   render: function (){
     var markup = this.template();

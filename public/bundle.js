@@ -19,9 +19,11 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./likesModelView":8,"backbone":14,"jquery":15,"underscore":16}],2:[function(require,module,exports){
+},{"./likesModelView":7,"backbone":13,"jquery":14,"underscore":15}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var Model = require ('./model');
+var collectionView = require('./collectionView');
+
 module.exports = Backbone.Collection.extend({
  model: Model,
  url: "http://tiny-tiny.herokuapp.com/collections/thriller",
@@ -30,7 +32,7 @@ module.exports = Backbone.Collection.extend({
  }
 });
 
-},{"./model":12,"backbone":14}],3:[function(require,module,exports){
+},{"./collectionView":3,"./model":11,"backbone":13}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
@@ -40,6 +42,7 @@ module.exports = Backbone.View.extend({
   el: '.content',
   initialize: function() {
     this.addAll();
+    this.listenTo(this.collection, 'update', this.addAll);
   },
 
   addOne: function(el) {
@@ -47,12 +50,12 @@ module.exports = Backbone.View.extend({
     this.$el.append(modelView.render().el);
   },
   addAll: function() {
-    // this.$el.html('');
+    this.$el.html('');
     _.each(this.collection.models, this.addOne, this);
   }
 });
 
-},{"./modelView":13,"backbone":14,"jquery":15,"underscore":16}],4:[function(require,module,exports){
+},{"./modelView":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
 var Backbone = require ('backbone');
 var _ = require('underscore');
 var tmpl = require ('./templates');
@@ -66,7 +69,7 @@ module.exports = Backbone.View.extend({
  },
  submitThriller: function (event){
    event.preventDefault();
-   this.model.set({
+   var objToSave = {
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
      postDate: this.$el.find('input[name="postDate"]').val(),
@@ -76,10 +79,10 @@ module.exports = Backbone.View.extend({
      summary: this.$el.find('input[name="summary"]').val(),
      favorite: this.$el.find('input[name="favorite"]').val(),
      favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
-   });
-   this.model.save();
-   this.collection.add(this.model);
-   this.model = new Model({});
+   };
+   var myModel = new Model(objToSave);
+   myModel.save();
+   this.collection.add(myModel);
   },
   render: function (){
     var markup = this.template();
@@ -91,6 +94,9 @@ module.exports = Backbone.View.extend({
   }
 });
 
+<<<<<<< HEAD
+},{"./model":11,"./templates":17,"backbone":13,"underscore":15}],5:[function(require,module,exports){
+=======
 },{"./model":12,"./templates":18,"backbone":14,"underscore":16}],5:[function(require,module,exports){
 var Backbone = require ('backbone');
 var _ = require('underscore');
@@ -131,6 +137,7 @@ module.exports = Backbone.View.extend({
 });
 
 },{"./model":12,"./templates":18,"backbone":14,"underscore":16}],6:[function(require,module,exports){
+>>>>>>> 1503a8530ccc8931786e0412e0dddc500aec739d
 var Backbone = require('backbone');
 var LikesModel = require('./likesModel');
 
@@ -143,7 +150,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./likesModel":7,"backbone":14}],7:[function(require,module,exports){
+},{"./likesModel":6,"backbone":13}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -154,7 +161,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":14}],8:[function(require,module,exports){
+},{"backbone":13}],7:[function(require,module,exports){
 var Backbone = require('backbone');
 var tmpl = require('./templates');
 var _ = require('underscore');
@@ -170,7 +177,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":18,"backbone":14,"underscore":16}],9:[function(require,module,exports){
+},{"./templates":17,"backbone":13,"underscore":15}],8:[function(require,module,exports){
 var Backbone = require('backbone');
 var LoginModel = require('./loginModel');
 var $ = require('jquery');
@@ -204,7 +211,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./loginModel":10,"./templates":18,"backbone":14,"jquery":15,"underscore":16}],10:[function(require,module,exports){
+},{"./loginModel":9,"./templates":17,"backbone":13,"jquery":14,"underscore":15}],9:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -215,7 +222,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":14}],11:[function(require,module,exports){
+},{"backbone":13}],10:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var Router = require('./router');
@@ -226,13 +233,13 @@ $(document).ready(function() {
   Backbone.history.start({pushstate: true});
 });
 
-},{"./formview":5,"./router":17,"backbone":14,"jquery":15}],12:[function(require,module,exports){
+},{"./formview":4,"./router":16,"backbone":13,"jquery":14}],11:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
   urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
   initialize: function() {
-    console.log('It is alive');
+    // console.log('It is alive');
     console.log(this.model);
   },
   defaults: {
@@ -248,7 +255,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":14}],13:[function(require,module,exports){
+},{"backbone":13}],12:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var tmpl = require('./templates');
@@ -266,7 +273,7 @@ module.exports = Backbone.View.extend({
   }
 })
 
-},{"./templates":18,"backbone":14,"underscore":16}],14:[function(require,module,exports){
+},{"./templates":17,"backbone":13,"underscore":15}],13:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.3.2
 
@@ -2190,7 +2197,7 @@ module.exports = Backbone.View.extend({
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":15,"underscore":16}],15:[function(require,module,exports){
+},{"jquery":14,"underscore":15}],14:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.2
  * http://jquery.com/
@@ -12034,7 +12041,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -13584,7 +13591,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}],17:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var LikesCollection = require('./likesCollection');
@@ -13592,7 +13599,7 @@ var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
 var ThrillerCollectionView = require('./collectionView');
 var LoginView = require('./loginFormView');
-var FormView = require('./formView');
+var FormView = require('./formview');
 
 module.exports = Backbone.Router.extend({
   subview: null,
@@ -13637,17 +13644,17 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formView":4,"./likesCollection":6,"./loginFormView":9,"backbone":14,"jquery":15}],18:[function(require,module,exports){
+},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13,"jquery":14}],17:[function(require,module,exports){
 module.exports = {
   createPost: [
-    `<input type="text" name="name" placeholder="name">
+    `<form><input type="text" name="name" placeholder="name">
      <input type="text" name="title" placeholder="title">
      <input type="text" name="location" placeholder="location">
      <input type="text" name="postDate" placeholder="postDate">
      <input type="text" name="date" placeholder="date">
      <input type="text" name="image" placeholder="imageUrl">
      <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
-     <button type="submit" value="create">Create</button>`
+     <button type="submit" value="create">Create</button><form>`
   ].join(''),
 
   post: [
@@ -13661,7 +13668,6 @@ module.exports = {
     <div class="summaryWrapper">
       <p class="summary"><%= summary %></p>
       <div class="favoriteWrapper">
-        <input type="checkbox" class="favCheckbox">
       </div>
     </div>`
   ].join(''),
@@ -13683,4 +13689,4 @@ module.exports = {
   ].join('')
 }
 
-},{}]},{},[11]);
+},{}]},{},[10]);
