@@ -16,11 +16,11 @@ public class User {
     String name;
 
     @Column(nullable = false)
-    String passwordHash;
+    String password;
 
-    public User(String name, String passwordHash) {
+    public User(String name, String password) {
         this.name = name;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 
     public User() {
@@ -34,12 +34,12 @@ public class User {
         this.name = name;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getId() {
