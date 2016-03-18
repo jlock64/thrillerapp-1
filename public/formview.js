@@ -7,21 +7,20 @@ module.exports = Backbone.View.extend({
  el: '.formContent',
  template: _.template(tmpl.createPost),
  events:{
-   'submit form': 'submitThriller',
-  
+   'submit .createButton': 'submitThriller'
  },
  submitThriller: function (event){
    event.preventDefault();
    this.model.set({
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
-     postDate: this.$el.find('input[name="postDate"]').val(),
-     date: this.$el.find('input[name="date"]').val(),
+    //  postDate: this.$el.find('input[name="postDate"]').val(),
+    //  date: this.$el.find('input[name="date"]').val(),
      location: this.$el.find('input[name="location"]').val(),
      image: this.$el.find('input[name="image"]').val(),
      summary: this.$el.find('input[name="summary"]').val(),
-     favorite: this.$el.find('input[name="favorite"]').val(),
-     favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
+    //  favorite: this.$el.find('input[name="favorite"]').val(),
+    //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
    });
    this.model.save();
    this.collection.add(this.model);
