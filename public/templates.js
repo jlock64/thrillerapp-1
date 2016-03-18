@@ -33,5 +33,11 @@ module.exports = {
      <input type="text" name="date" placeholder="<%= date %>">
      <input type="text" name="image" placeholder="imageUrl">
      <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea>`
-  ].join('')
+  ].join(''),
+
+  login: [
+    `<input type="text" name="username" placeholder="username">
+     <input type="password" name="password" placeholder="password">
+     <button type="button" class="loginButton" name="login">Login</button>`
+  ]
 }
