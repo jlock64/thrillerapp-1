@@ -19,7 +19,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./likesModelView":7,"backbone":13,"jquery":14,"underscore":15}],2:[function(require,module,exports){
+},{"./likesModelView":8,"backbone":14,"jquery":15,"underscore":16}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var Model = require ('./model');
 module.exports = Backbone.Collection.extend({
@@ -30,7 +30,7 @@ module.exports = Backbone.Collection.extend({
  }
 });
 
-},{"./model":11,"backbone":13}],3:[function(require,module,exports){
+},{"./model":12,"backbone":14}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
@@ -47,12 +47,12 @@ module.exports = Backbone.View.extend({
     this.$el.append(modelView.render().el);
   },
   addAll: function() {
-    this.$el.empty();
+    // this.$el.html('');
     _.each(this.collection.models, this.addOne, this);
   }
 });
 
-},{"./modelView":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
+},{"./modelView":13,"backbone":14,"jquery":15,"underscore":16}],4:[function(require,module,exports){
 var Backbone = require ('backbone');
 var _ = require('underscore');
 var tmpl = require ('./templates');
@@ -66,30 +66,71 @@ module.exports = Backbone.View.extend({
  },
  submitThriller: function (event){
    event.preventDefault();
-   var el = this.$el
    this.model.set({
-     name:  el.find('input[name="name"]').val(),
-     title:  el.find('input[name="title"]').val(),
-     postDate: el.find('input[name="postDate"]').val(),
-     date: el.find('input[name="date"]').val(),
-     location: el.find('input[name="location"]').val(),
-     image: el.find('input[name="image"]').val(),
-     summary: el.find('input[name="summary"]').val(),
-     favorite: el.find('input[name="favorite"]').val(),
-     favoriteRating: el.find('input[name="favoriteRating"]').val(),
+     name: this.$el.find('input[name="name"]').val(),
+     title: this.$el.find('input[name="title"]').val(),
+     postDate: this.$el.find('input[name="postDate"]').val(),
+     date: this.$el.find('input[name="date"]').val(),
+     location: this.$el.find('input[name="location"]').val(),
+     image: this.$el.find('input[name="image"]').val(),
+     summary: this.$el.find('input[name="summary"]').val(),
+     favorite: this.$el.find('input[name="favorite"]').val(),
+     favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
    });
    this.model.save();
    this.collection.add(this.model);
-   this.model = new Model ({});
+   this.model = new Model({});
   },
   render: function (){
-    var markup = this.template(this.model.toJSON());
+    var markup = this.template();
     this.$el.html(markup);
     return this;
+  },
+  initialize: function() {
+    console.log('FORM VIEW');
   }
 });
 
-},{"./model":11,"./templates":17,"backbone":13,"underscore":15}],5:[function(require,module,exports){
+},{"./model":12,"./templates":18,"backbone":14,"underscore":16}],5:[function(require,module,exports){
+var Backbone = require ('backbone');
+var _ = require('underscore');
+var tmpl = require ('./templates');
+var Model = require ('./model');
+
+module.exports = Backbone.View.extend({
+ el: '.formContent',
+ template: _.template(tmpl.createPost),
+ events:{
+   'submit .createButton': 'submitThriller'
+ },
+ submitThriller: function (event){
+   event.preventDefault();
+   this.model.set({
+     name: this.$el.find('input[name="name"]').val(),
+     title: this.$el.find('input[name="title"]').val(),
+    //  postDate: this.$el.find('input[name="postDate"]').val(),
+    //  date: this.$el.find('input[name="date"]').val(),
+     location: this.$el.find('input[name="location"]').val(),
+     image: this.$el.find('input[name="image"]').val(),
+     summary: this.$el.find('input[name="summary"]').val(),
+    //  favorite: this.$el.find('input[name="favorite"]').val(),
+    //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
+   });
+   this.model.save();
+   this.collection.add(this.model);
+   this.model = new Model({});
+  },
+  render: function (){
+    var markup = this.template();
+    this.$el.html(markup);
+    return this;
+  },
+  initialize: function() {
+    console.log('FORM VIEW');
+  }
+});
+
+},{"./model":12,"./templates":18,"backbone":14,"underscore":16}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var LikesModel = require('./likesModel');
 
@@ -102,7 +143,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./likesModel":6,"backbone":13}],6:[function(require,module,exports){
+},{"./likesModel":7,"backbone":14}],7:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -113,7 +154,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":13}],7:[function(require,module,exports){
+},{"backbone":14}],8:[function(require,module,exports){
 var Backbone = require('backbone');
 var tmpl = require('./templates');
 var _ = require('underscore');
@@ -123,13 +164,13 @@ module.exports = Backbone.View.extend({
   template: _.template(tmpl.post),
   initialize: function() {},
   render: function() {
-    var markup = this.template(this.model.toJSON);
+    var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
   }
 });
 
-},{"./templates":17,"backbone":13,"underscore":15}],8:[function(require,module,exports){
+},{"./templates":18,"backbone":14,"underscore":16}],9:[function(require,module,exports){
 var Backbone = require('backbone');
 var LoginModel = require('./loginModel');
 var $ = require('jquery');
@@ -139,7 +180,7 @@ var _ = require('underscore');
 module.exports = Backbone.View.extend({
   model: LoginModel,
   url: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
-  // template: _.template(tmpl.login),
+  template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
     this.render();
@@ -157,13 +198,13 @@ module.exports = Backbone.View.extend({
     this.View.add(this.model);
   },
   render: function() {
-    var markup = this.template(this.model.toJSON);
+    var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
   }
 });
 
-},{"./loginModel":9,"./templates":17,"backbone":13,"jquery":14,"underscore":15}],9:[function(require,module,exports){
+},{"./loginModel":10,"./templates":18,"backbone":14,"jquery":15,"underscore":16}],10:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -174,17 +215,18 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":13}],10:[function(require,module,exports){
+},{"backbone":14}],11:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var Router = require('./router');
+var FormView = require('./formview');
 
 $(document).ready(function() {
   new Router();
   Backbone.history.start({pushstate: true});
 });
 
-},{"./router":16,"backbone":13,"jquery":14}],11:[function(require,module,exports){
+},{"./formview":5,"./router":17,"backbone":14,"jquery":15}],12:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -206,7 +248,7 @@ module.exports = Backbone.Model.extend({
   }
 });
 
-},{"backbone":13}],12:[function(require,module,exports){
+},{"backbone":14}],13:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var tmpl = require('./templates');
@@ -224,7 +266,7 @@ module.exports = Backbone.View.extend({
   }
 })
 
-},{"./templates":17,"backbone":13,"underscore":15}],13:[function(require,module,exports){
+},{"./templates":18,"backbone":14,"underscore":16}],14:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.3.2
 
@@ -2148,7 +2190,7 @@ module.exports = Backbone.View.extend({
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":14,"underscore":15}],14:[function(require,module,exports){
+},{"jquery":15,"underscore":16}],15:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.2
  * http://jquery.com/
@@ -11992,7 +12034,7 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -13542,8 +13584,9 @@ return jQuery;
   }
 }.call(this));
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 var Backbone = require('backbone');
+var $ = require('jquery');
 var LikesCollection = require('./likesCollection');
 var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
@@ -13566,23 +13609,25 @@ module.exports = Backbone.Router.extend({
     likesCol.fetch().then(function(data) {
       console.log(likesCol.models.length); //data is ready
       that.renderSubview(new LikesCollectionView({collection: likesCol}));
+
     });
   },
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
-    //collection thrillerCol is still empty
+
     thrillerCol.fetch().then(function(data) {
-      console.log(thrillerCol.models.length); //data is ready
+      // console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      that.renderSubview(new FormView({}));
+      var newForm = new FormView({collection: thrillerCol})
+      newForm.render();
     });
   },
   login: function() {
     var that = this;
     var loginView = new LoginView();
     loginView.fetch().then(function(data) {
-      that.renderSubview(new LoginView({view: loginView}));
+      that.renderSubview(new LoginView({}));
     });
   },
   renderSubview: function(subview) {
@@ -13592,7 +13637,7 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formView":4,"./likesCollection":5,"./loginFormView":8,"backbone":13}],17:[function(require,module,exports){
+},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formView":4,"./likesCollection":6,"./loginFormView":9,"backbone":14,"jquery":15}],18:[function(require,module,exports){
 module.exports = {
   createPost: [
     `<input type="text" name="name" placeholder="name">
@@ -13601,7 +13646,8 @@ module.exports = {
      <input type="text" name="postDate" placeholder="postDate">
      <input type="text" name="date" placeholder="date">
      <input type="text" name="image" placeholder="imageUrl">
-     <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>`
+     <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
+     <button type="submit" value="create">Create</button>`
   ].join(''),
 
   post: [
@@ -13634,7 +13680,7 @@ module.exports = {
     `<input type="text" name="username" placeholder="username">
      <input type="password" name="password" placeholder="password">
      <button type="button" class="loginButton" name="login">Login</button>`
-  ]
+  ].join('')
 }
 
-},{}]},{},[10]);
+},{}]},{},[11]);
