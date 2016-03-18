@@ -7,7 +7,8 @@ module.exports = Backbone.View.extend({
  el: '.formContent',
  template: _.template(tmpl.createPost),
  events:{
-   'submit form': 'submitThriller'
+   'submit form': 'submitThriller',
+  
  },
  submitThriller: function (event){
    event.preventDefault();
