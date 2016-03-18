@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/thrillers',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
   initialize: function() {
     console.log('It is alive');
     console.log(this.model);
