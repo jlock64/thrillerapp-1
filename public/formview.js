@@ -1,7 +1,7 @@
 var Backbone = require ('backbone');
 var _ =required('underscore');
 var tmpl = require ('./templates');
-var Model = require ('./model.js');
+var Model = require ('./model');
 
 module.exports = Backbone.View.extend({
  tagName: 'el.formContent',

@@ -35,7 +35,7 @@ module.exports = Backbone.Router.extend({
     var that = this;
     var loginView = new LoginView();
     loginView.fetch().then(function(data) {
-      that.renderSubview(new LoginView({view: loginView}))
+      that.renderSubview(new LoginView({view: loginView}));
     });
   }
   renderSubview: function(subview) {
