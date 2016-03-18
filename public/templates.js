@@ -7,7 +7,7 @@ module.exports = {
      <input type="text" name="date" placeholder="date">
      <input type="text" name="image" placeholder="imageUrl">
      <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
-     <button type="submit" value="create">Create</button><form>`
+     <button type="submit" class="createButton" value="create">Create</button></form>`
   ].join(''),
 
   post: [

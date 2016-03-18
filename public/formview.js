@@ -7,7 +7,7 @@ module.exports = Backbone.View.extend({
  el: '.formContent',
  template: _.template(tmpl.createPost),
  events:{
-   'submit .createButton': 'submitThriller'
+   'click .createButton': 'submitThriller'
  },
  submitThriller: function (event){
    event.preventDefault();
@@ -18,12 +18,14 @@ module.exports = Backbone.View.extend({
     //  date: this.$el.find('input[name="date"]').val(),
      location: this.$el.find('input[name="location"]').val(),
      image: this.$el.find('input[name="image"]').val(),
-     summary: this.$el.find('input[name="summary"]').val(),
+     summary: this.$el.find('input[name="summary"]').val()
     //  favorite: this.$el.find('input[name="favorite"]').val(),
     //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
+   console.log(myModel);
+   window.glob = myModel
    this.collection.add(myModel);
   },
   render: function (){
