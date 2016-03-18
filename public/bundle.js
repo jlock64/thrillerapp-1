@@ -86,6 +86,9 @@ module.exports = Backbone.View.extend({
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
+  },
+  initialize: function() {
+    console.log('FORM VIEW')
   }
 });
 

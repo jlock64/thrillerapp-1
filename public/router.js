@@ -44,5 +44,8 @@ module.exports = Backbone.Router.extend({
     this.subview && this.subview.remove();
     this.subview = subview;
   }
-
+  render : function () {
+      this.$el.html(this.template(markup));
+      return this;
+  }
 });

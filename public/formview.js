@@ -27,10 +27,12 @@ module.exports = Backbone.View.extend({
    this.collection.add(this.model);
    this.model = new Model ({});
   },
+
   render: function (){
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
+}
   },
   initialize: function() {
     console.log('FORM VIEW')
