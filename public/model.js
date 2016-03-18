@@ -7,14 +7,14 @@ module.exports = Backbone.Model.extend({
     console.log(this.model);
   },
   defaults: {
-    name: 'Candance Hank'
-    title: 'National Parks',
-    postDate: 'March 17th, 2016',
-    date: 'Feb 2016',
-    location: 'Yosemite National Park',
+    name: '',
+    title: '',
+    postDate: '',
+    date: '',
+    location: '',
     image: 'http://fillmurray.com/250/250',
-    summary: 'This was a great trip to Yosemite',
-    favorite: '5',
-    favoriteRating: '5'
+    summary: '',
+    favorite: '',
+    favoriteRating: ''
   }
 });
