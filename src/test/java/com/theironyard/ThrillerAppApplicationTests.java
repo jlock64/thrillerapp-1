@@ -115,5 +115,27 @@ public class ThrillerAppApplicationTests {
 		);
 		Assert.assertTrue(thrills.count() == 1);
 	}
+	@Test
+	public void test5EditThrill() throws Exception {
+		Thrill t = thrills.findOne(1);
+		t.setTitle("big ol boogers");
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(t);
+
+		mockMvc.perform(
+				MockMvcRequestBuilders.put("/thrill/1")
+				.content(json)
+				.contentType("application/json")
+				.sessionAttr("name", "Alice")
+		);
+		Assert.assertTrue(thrills.findOne(1).getTitle().equals("big ol boogers"));
+	}
+	@Test
+	public void test6DeleteThrill() throws Exception {
+		mockMvc.perform(
+				MockMvcRequestBuilders.delete("/thrill/1")
+		);
+		Assert.assertTrue(thrills.count() == 0);
+	}
 
 }
