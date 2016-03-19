@@ -14,6 +14,7 @@ $(document).ready(function() {
 
   // Navigation creat thriller link
   $('#createNavLink').on('click', function() {
-    
+    $('#createNavLink').closest('header').siblings().hide();
+    $('.formContent').show();
   });
 });
