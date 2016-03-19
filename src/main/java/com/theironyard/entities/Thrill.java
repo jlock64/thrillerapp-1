@@ -29,6 +29,9 @@ public class Thrill {
     @Column(nullable = false)
     String summary;
 
+    @OneToMany
+    Photo profilePhoto;
+
     @ManyToOne
     User user;
 
