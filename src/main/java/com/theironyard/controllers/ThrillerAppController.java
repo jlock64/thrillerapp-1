@@ -100,11 +100,12 @@ public class ThrillerAppController {
     }
 
     @RequestMapping(path = "/thrill", method = RequestMethod.POST)
-    public void addThrill(@RequestBody Thrill thrill, HttpSession session) {
+    public Thrill addThrill(@RequestBody Thrill thrill, HttpSession session) {
         String name = (String) session.getAttribute("name");
         User user = users.findByName(name);
         thrill.setUser(user);
         thrills.save(thrill);
+        return thrill;
     }
 
     @RequestMapping(path = "/thrill", method = RequestMethod.GET)
