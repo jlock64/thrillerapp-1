@@ -17,11 +17,11 @@ public class Thrill {
     @Column(nullable = false)
     String title;
 
-    @Column(nullable = false)
-    LocalDateTime postTime;
-
-    @Column(nullable = false)
-    LocalDate date;
+//    @Column(nullable = false)
+//    LocalDateTime postTime;
+//
+//    @Column(nullable = false)
+//    LocalDate date;
 
     @Column(nullable = false)
     String location;
@@ -29,18 +29,19 @@ public class Thrill {
     @Column(nullable = false)
     String summary;
 
-    @OneToMany
-    Photo profilePhoto;
+    @Column(nullable = false)
+    String firstPhoto;
 
     @ManyToOne
     User user;
 
-    public Thrill(String title, LocalDateTime postTime, LocalDate date, String location, String summary, User user) {
+    public Thrill(String title, String location, String summary, String firstPhoto, User user) { // LocalDateTime postTime, LocalDate date,
         this.title = title;
-        this.postTime = postTime;
-        this.date = date;
+//        this.postTime = postTime;
+//        this.date = date;
         this.location = location;
         this.summary = summary;
+        this.firstPhoto = firstPhoto;
         this.user = user;
     }
 
@@ -63,21 +64,21 @@ public class Thrill {
         this.title = title;
     }
 
-    public LocalDateTime getPostTime() {
-        return postTime;
-    }
-
-    public void setPostTime(LocalDateTime postTime) {
-        this.postTime = postTime;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
+//    public LocalDateTime getPostTime() {
+//        return postTime;
+//    }
+//
+//    public void setPostTime(LocalDateTime postTime) {
+//        this.postTime = postTime;
+//    }
+//
+//    public LocalDate getDate() {
+//        return date;
+//    }
+//
+//    public void setDate(LocalDate date) {
+//        this.date = date;
+//    }
 
     public String getLocation() {
         return location;
@@ -93,6 +94,14 @@ public class Thrill {
 
     public void setSummary(String summary) {
         this.summary = summary;
+    }
+
+    public String getFirstPhoto() {
+        return firstPhoto;
+    }
+
+    public void setFirstPhoto(String firstPhoto) {
+        this.firstPhoto = firstPhoto;
     }
 
     public User getUser() {

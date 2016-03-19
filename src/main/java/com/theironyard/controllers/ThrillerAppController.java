@@ -146,3 +146,6 @@ public class ThrillerAppController {
 
     //need the following routes for photo: get(one), get(all), delete ? don't need put since you dont edit photo uploads.
 }
+
+
+
