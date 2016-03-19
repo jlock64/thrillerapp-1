@@ -1,8 +1,6 @@
 package com.theironyard.entities;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * Created by noellemachin on 3/17/16.
@@ -30,18 +28,18 @@ public class Thrill {
     String summary;
 
     @Column(nullable = false)
-    String firstPhoto;
+    String photo;
 
     @ManyToOne
     User user;
 
-    public Thrill(String title, String location, String summary, String firstPhoto, User user) { // LocalDateTime postTime, LocalDate date,
+    public Thrill(String title, String location, String summary, String photo, User user) { // LocalDateTime postTime, LocalDate date,
         this.title = title;
 //        this.postTime = postTime;
 //        this.date = date;
         this.location = location;
         this.summary = summary;
-        this.firstPhoto = firstPhoto;
+        this.photo = photo;
         this.user = user;
     }
 
@@ -96,12 +94,12 @@ public class Thrill {
         this.summary = summary;
     }
 
-    public String getFirstPhoto() {
-        return firstPhoto;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setFirstPhoto(String firstPhoto) {
-        this.firstPhoto = firstPhoto;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public User getUser() {
