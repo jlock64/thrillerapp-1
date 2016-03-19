@@ -4,7 +4,7 @@ var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
 var ThrillerCollectionView = require('./collectionView');
 var LoginView = require('./loginFormView');
-var FormView = require('./formView');
+var FormView = require('./formview');
 
 module.exports = Backbone.Router.extend({
   subview: null,
@@ -25,17 +25,27 @@ module.exports = Backbone.Router.extend({
   },
   homepage: function() {
     var that = this;
+
+    var loginForm = new LoginView({});
+    loginForm.render();
+
     var thrillerCol = new ThrillerCollection();
     //collection thrillerCol is still empty
     thrillerCol.fetch().then(function(data) {
       console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
+<<<<<<< HEAD
       that.renderSubview(new FormView({}));
+=======
+      var newForm = new FormView({collection: thrillerCol});
+      // var loginForm = new LoginView({});
+      newForm.render();
+>>>>>>> 5d31a85e824c8d68aa8eeb749ca3a4ffbfd39174
     });
   },
   login: function() {
     var that = this;
-    var loginView = new LoginView();
+    var loginForm = new LoginView();
     loginView.fetch().then(function(data) {
       that.renderSubview(new LoginView({view: loginView}));
     });

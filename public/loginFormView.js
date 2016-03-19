@@ -5,8 +5,9 @@ var tmpl = require('./templates');
 var _ = require('underscore');
 
 module.exports = Backbone.View.extend({
+  el: '.loginForm',
   model: LoginModel,
-  url: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
+  url: '/login',
   template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
@@ -15,17 +16,22 @@ module.exports = Backbone.View.extend({
   events: {
     'click .loginButton': 'loginUser'
   },
-  loginUser: function(e) {
-    e.preventDefault();
-    this.model.set({
+  loginUser: function(event) {
+    event.preventDefault();
+    console.log(('clicky'));
+    var loginToSave = {
       username: this.$el.find('input[name="username"]').val(),
       password: this.$el.find('input[name="password"]').val()
-    });
+    };
     this.$el.find('input').val('');
-    this.View.add(this.model);
+    var myLogin = new LoginModel(loginToSave);
+    myLogin.save();
+    console.log(myLogin);
+    window.glob = myLogin;
+    // this.model.add(myLogin);
   },
   render: function() {
-    var markup = this.template(this.model.toJSON());
+    var markup = this.template();
     this.$el.html(markup);
     return this;
   }

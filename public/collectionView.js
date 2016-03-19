@@ -4,9 +4,10 @@ var $ = require('jquery');
 var ModelView = require('./modelView');
 
 module.exports = Backbone.View.extend({
-  el: '.content',
+  el: '.content',  // attaches to article with class content
   initialize: function() {
     this.addAll();
+    this.listenTo(this.collection, 'update', this.addAll);
   },
 
   addOne: function(el) {
@@ -17,7 +18,7 @@ module.exports = Backbone.View.extend({
 
   },
   addAll: function() {
-    // this.$el.html('');
+    this.$el.html('');
     _.each(this.collection.models, this.addOne, this);
   }
 });

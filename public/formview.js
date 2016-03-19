@@ -4,27 +4,25 @@ var tmpl = require ('./templates');
 var Model = require ('./model');
 
 module.exports = Backbone.View.extend({
- el: '.formContent',
+ el: '.formContent', // attaches to the div with class formContent
  template: _.template(tmpl.createPost),
  events:{
-   'submit .createButton': 'submitThriller'
+   'click .createButton': 'submitThriller'
  },
  submitThriller: function (event){
    event.preventDefault();
-   this.model.set({
+   var objToSave = {
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
-    //  postDate: this.$el.find('input[name="postDate"]').val(),
-    //  date: this.$el.find('input[name="date"]').val(),
      location: this.$el.find('input[name="location"]').val(),
-     image: this.$el.find('input[name="image"]').val(),
      summary: this.$el.find('input[name="summary"]').val(),
-    //  favorite: this.$el.find('input[name="favorite"]').val(),
-    //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
-   });
-   this.model.save();
-   this.collection.add(this.model);
-   this.model = new Model({});
+     image: this.$el.find('input[type="file"]').val(),
+   };
+   var myModel = new Model(objToSave);
+   myModel.save();
+   console.log(myModel);
+   window.glob = myModel
+   this.collection.add(myModel);
   },
 
   render: function (){
