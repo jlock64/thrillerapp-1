@@ -20,6 +20,12 @@ public class Photo {
     String filename;
 
 
+
+
+
+
+
+
     public Photo(Thrill thrill, String filename) {
         this.thrill = thrill;
         this.filename = filename;

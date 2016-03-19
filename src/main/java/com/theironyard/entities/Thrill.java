@@ -1,5 +1,7 @@
 package com.theironyard.entities;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,19 +32,22 @@ public class Thrill {
     String summary;
 
     @Column(nullable = false)
-    String firstPhoto;
+    String profileFileName;
+
+    @Transient
+    MultipartFile image;
 
     @ManyToOne
     User user;
 
-    public Thrill(String title, String location, String summary, String firstPhoto, User user) { // LocalDateTime postTime, LocalDate date,
+    public Thrill(String title, String location, String summary, User user, String profileFileName) { // LocalDateTime postTime, LocalDate date,
         this.title = title;
 //        this.postTime = postTime;
 //        this.date = date;
         this.location = location;
         this.summary = summary;
-        this.firstPhoto = firstPhoto;
         this.user = user;
+        this.profileFileName = profileFileName  ;
     }
 
     public Thrill() {
@@ -96,14 +101,6 @@ public class Thrill {
         this.summary = summary;
     }
 
-    public String getFirstPhoto() {
-        return firstPhoto;
-    }
-
-    public void setFirstPhoto(String firstPhoto) {
-        this.firstPhoto = firstPhoto;
-    }
-
     public User getUser() {
         return user;
     }
@@ -112,5 +109,19 @@ public class Thrill {
         this.user = user;
     }
 
+    public String getProfileFileName() {
+        return profileFileName;
+    }
 
+    public void setProfileFileName(String profileFileName) {
+        this.profileFileName = profileFileName;
+    }
+
+    public MultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(MultipartFile image) {
+        this.image = image;
+    }
 }
