@@ -26,7 +26,7 @@ var collectionView = require('./collectionView');
 
 module.exports = Backbone.Collection.extend({
  model: Model,
- url: "http://tiny-tiny.herokuapp.com/collections/thriller",
+ url: '/thrill',
  initialize: function (){
    console.log("This is a thriller collection");
  }
@@ -214,7 +214,7 @@ $(document).ready(function() {
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
+  urlRoot: '/thrill',
   initialize: function() {
     console.log('It is alive');
     // console.log(this.model);
