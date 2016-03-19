@@ -197,6 +197,16 @@ var FormView = require('./formview');
 $(document).ready(function() {
   new Router();
   Backbone.history.start({pushstate: true});
+
+  // menu click
+  $('.hamburger').on('click', function() {
+    $('.dropdown').toggleClass('hidden');
+  });
+
+  // Navigation creat thriller link
+  $('#createNavLink').on('click', function() {
+    
+  });
 });
 
 },{"./formview":4,"./router":16,"backbone":13,"jquery":14}],11:[function(require,module,exports){
@@ -13617,18 +13627,16 @@ module.exports = Backbone.Router.extend({
 });
 
 },{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13}],17:[function(require,module,exports){
-// <input type="text" name="postDate" placeholder="postDate">
-// <input type="text" name="date" placeholder="date">
-
 module.exports = {
   createPost: [
-    `<form class="">
-       <input type="text" name="name" placeholder="name">
-       <input type="text" name="title" placeholder="title">
-       <input type="text" name="location" placeholder="location">
-       <input type="file" name="image" id="inputFile">
-       <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
-       <button type="submit" class="btn btn-default createButton" value="create">Create</button>
+    `<form class="form-inline">
+       <h3>Share Your Latest Thrill</h3>
+         <input type="text" id="inputName" name="name" placeholder="name">
+         <input type="text" id="inputTitle" name="title" placeholder="title">
+         <input type="text" id="inputLocation" name="location" placeholder="location">
+         <input type="file" name="image" id="inputFile">
+         <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller experience here"></textarea>
+       <button type="submit" class="btn btn-default createButton" value="create">Create Thriller</button>
      </form>`
   ].join(''),
 
