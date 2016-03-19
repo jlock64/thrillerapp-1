@@ -34,13 +34,9 @@ module.exports = Backbone.Router.extend({
     thrillerCol.fetch().then(function(data) {
       console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-<<<<<<< HEAD
-      that.renderSubview(new FormView({}));
-=======
       var newForm = new FormView({collection: thrillerCol});
       // var loginForm = new LoginView({});
       newForm.render();
->>>>>>> 5d31a85e824c8d68aa8eeb749ca3a4ffbfd39174
     });
   },
   login: function() {
