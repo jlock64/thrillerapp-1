@@ -1,22 +1,6 @@
-<<<<<<< HEAD
 form {
-  background-color: red; }
+  margin-top: 10%; }
 
-.hidden {
-  display: hidden; }
-
-header {
-  margin: 0px 0px 50px 0px;
-  padding: 0;
-  width: 100%;
-  background-color: #fff;
-  text-align: center;
-  border-bottom: 1px solid #000; }
-  header h1 {
-    font-family: Tahoma; }
-
-=======
->>>>>>> 30e1792dfe0db00b625a911d48e9f7d5b15a789c
 .formContent {
   margin-top: 50px; }
 
