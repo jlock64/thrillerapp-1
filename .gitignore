@@ -49,3 +49,5 @@ crashlytics-build.properties
 
 *.db
 .DS_Store
+*.log
+npm-debug.log

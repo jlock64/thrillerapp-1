@@ -26,7 +26,7 @@ var collectionView = require('./collectionView');
 
 module.exports = Backbone.Collection.extend({
  model: Model,
- url: "/thrill",
+ url: "http://tiny-tiny.herokuapp.com/collections/thriller",
  initialize: function (){
    console.log("This is a thriller collection");
  }
@@ -36,7 +36,7 @@ module.exports = Backbone.Collection.extend({
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
-var ModelView = require('./modelView');
+var ModelView = require('./modelview');
 
 module.exports = Backbone.View.extend({
   el: '.content',  // attaches to article with class content
@@ -47,7 +47,10 @@ module.exports = Backbone.View.extend({
 
   addOne: function(el) {
     var modelView = new ModelView({model: el});
-    this.$el.append(modelView.render().el);
+   this.$el.append(modelView.render().el);
+
+
+
   },
   addAll: function() {
     this.$el.html('');
@@ -55,7 +58,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./modelView":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
+},{"./modelview":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
 var Backbone = require ('backbone');
 var _ = require('underscore');
 var tmpl = require ('./templates');
@@ -82,11 +85,13 @@ module.exports = Backbone.View.extend({
    window.glob = myModel
    this.collection.add(myModel);
   },
+
   render: function (){
     var markup = this.template();
     this.$el.html(markup);
     return this;
-  },
+},
+
   initialize: function() {
     console.log('FORM VIEW');
   }
@@ -140,8 +145,9 @@ var tmpl = require('./templates');
 var _ = require('underscore');
 
 module.exports = Backbone.View.extend({
+  el: '.loginForm',
   model: LoginModel,
-  url: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
+  url: '/user',
   template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
@@ -150,17 +156,22 @@ module.exports = Backbone.View.extend({
   events: {
     'click .loginButton': 'loginUser'
   },
-  loginUser: function(e) {
-    e.preventDefault();
-    this.model.set({
-      username: this.$el.find('input[name="username"]').val(),
+  loginUser: function(event) {
+    event.preventDefault();
+    console.log(('clicky'));
+    var loginToSave = {
+      name: this.$el.find('input[name="username"]').val(),
       password: this.$el.find('input[name="password"]').val()
-    });
+    };
     this.$el.find('input').val('');
-    this.View.add(this.model);
+    var myLogin = new LoginModel(loginToSave);
+    myLogin.save();
+    console.log(myLogin);
+    window.glob = myLogin;
+    // this.model.add(myLogin);
   },
   render: function() {
-    var markup = this.template(this.model.toJSON());
+    var markup = this.template();
     this.$el.html(markup);
     return this;
   }
@@ -170,8 +181,8 @@ module.exports = Backbone.View.extend({
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
-  id: '_id', // what is the java id called
+  urlRoot: '/user',
+  // id: '_id', // what is the java id called
   initialize: function() {
     console.log('login Model is alive');
   }
@@ -186,16 +197,26 @@ var FormView = require('./formview');
 $(document).ready(function() {
   new Router();
   Backbone.history.start({pushstate: true});
+
+  // menu click
+  $('.hamburger').on('click', function() {
+    $('.dropdown').toggleClass('hidden');
+  });
+
+  // Navigation creat thriller link
+  $('#createNavLink').on('click', function() {
+    
+  });
 });
 
 },{"./formview":4,"./router":16,"backbone":13,"jquery":14}],11:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/thrill',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
   initialize: function() {
-    // console.log('It is alive');
-    console.log(this.model);
+    console.log('It is alive');
+    // console.log(this.model);
   },
   defaults: {
     name: '',
@@ -214,6 +235,24 @@ var tmpl = require('./templates');
 module.exports = Backbone.View.extend({
   tagName: 'article',
   template: _.template(tmpl.post),
+  events: {
+    'click .delete': 'deleteThrill',
+    'click .edit': 'editThrill',
+  },
+  editThrill: function(){
+    event.preventDefault();
+
+    this.model.set({
+      name: this.$el.find('').val(),
+      title: this.$el.find('').val(),
+      location: this.$el.find('').val(),
+      summary: this.$el.find('').val(),
+      image: this.$el.find('').val(),
+    })
+  },
+  deleteThrill: function(){
+    this.model.destroy();
+  },
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
   },
@@ -13544,7 +13583,6 @@ return jQuery;
 
 },{}],16:[function(require,module,exports){
 var Backbone = require('backbone');
-var $ = require('jquery');
 var LikesCollection = require('./likesCollection');
 var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
@@ -13563,30 +13601,31 @@ module.exports = Backbone.Router.extend({
   likes: function() {
     var that = this;
     var likesCol = new LikesCollection();
+    new LoginView();
     //collection likesCol is still empty
     likesCol.fetch().then(function(data) {
       console.log(likesCol.models.length); //data is ready
       that.renderSubview(new LikesCollectionView({collection: likesCol}));
-
     });
+
   },
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
 
+    new LoginView()
+
     thrillerCol.fetch().then(function(data) {
-      // console.log(thrillerCol.models.length); //data is ready
+      console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      var newForm = new FormView({collection: thrillerCol})
+      var newForm = new FormView({collection: thrillerCol});
       newForm.render();
     });
   },
   login: function() {
     var that = this;
-    var loginView = new LoginView();
-    loginView.fetch().then(function(data) {
-      that.renderSubview(new LoginView({}));
-    });
+
+    that.renderSubview(new LoginView({}));
   },
   renderSubview: function(subview) {
     this.subview && this.subview.remove();
@@ -13595,19 +13634,17 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13,"jquery":14}],17:[function(require,module,exports){
-// <input type="text" name="postDate" placeholder="postDate">
-// <input type="text" name="date" placeholder="date">
-
+},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13}],17:[function(require,module,exports){
 module.exports = {
   createPost: [
-    `<form class="">
-       <input type="text" name="name" placeholder="name">
-       <input type="text" name="title" placeholder="title">
-       <input type="text" name="location" placeholder="location">
-       <input type="file" name="image" id="inputFile">
-       <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
-       <button type="submit" class="btn btn-default createButton" value="create">Create</button>
+    `<form class="form-inline">
+       <h3>Share Your Latest Thrill</h3>
+         <input type="text" id="inputName" name="name" placeholder="name">
+         <input type="text" id="inputTitle" name="title" placeholder="title">
+         <input type="text" id="inputLocation" name="location" placeholder="location">
+         <input type="file" name="image" id="inputFile">
+         <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller experience here"></textarea>
+       <button type="submit" class="btn btn-default createButton" value="create">Create Thriller</button>
      </form>`
   ].join(''),
 
@@ -13620,11 +13657,12 @@ module.exports = {
       <h4 class="title"><%= title %></h1>
       <h4 class="location"><%= location %></h3>
       <div class="summaryWrapper">
-        <p class="summary"><%= summary %></p>
+      <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
-        <button class="btn btn-default" type="submit">Edit</button>
-        <button class="btn btn-default" type="submit">Delete</button>
+
+        <button class="btn btn-default edit" type="submit">Edit</button>
+        <button class="btn btn-default delete" type="submit">Delete</button>
       </div>
     </div>`
   ].join(''),
@@ -13633,17 +13671,41 @@ module.exports = {
     `<input type="text" name="name" placeholder="<%= name %>">
      <input type="text" name="title" placeholder="<%= title %>">
      <input type="text" name="location" placeholder="<%= location %>">
-     <input type="text" name="postDate" placeholder="<%= postDate %>">
-     <input type="text" name="date" placeholder="<%= date %>">
      <input type="text" name="image" placeholder="imageUrl">
      <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea>`
   ].join(''),
 
   login: [
-    `<input type="text" name="username" placeholder="username">
-     <input type="password" name="password" placeholder="password">
-     <button type="button" class="loginButton" name="login">Login</button>`
+  `  <form class="form-horizontal login-form">
+    <div class="form-group">
+    <label for="inputName3" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+    <input type="name" class="form-control" id="inputName3" placeholder="Name">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <button type="button" class="btn btn-primary">Submit</button>
+    </div>
+    </div>
+    </form>`
+
   ].join('')
 }
+
+// `<input type="text" name="username" placeholder="username">
+//  <input type="password" name="password" placeholder="password">
+//  <button class="btn btn-default loginButton" type="submit">Button</button>`
 
 },{}]},{},[10]);

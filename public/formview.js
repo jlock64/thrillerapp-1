@@ -24,11 +24,13 @@ module.exports = Backbone.View.extend({
    window.glob = myModel
    this.collection.add(myModel);
   },
+
   render: function (){
     var markup = this.template();
     this.$el.html(markup);
     return this;
-  },
+},
+
   initialize: function() {
     console.log('FORM VIEW');
   }

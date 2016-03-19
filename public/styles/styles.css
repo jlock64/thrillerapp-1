@@ -1,15 +1,8 @@
-header {
-  margin: 0px 0px 50px 0px;
-  padding: 0;
-  width: 100%;
-  background-color: #fff;
-  text-align: center;
-  border-bottom: 1px solid #000; }
-  header h1 {
-    font-family: Tahoma; }
+* {
+  box-sizing: border-box; }
 
-.formContent {
-  margin-top: 50px; }
+.hidden {
+  display: hidden; }
 
 .hero {
   width: 100%;
@@ -19,3 +12,174 @@ header {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center; }
+
+body {
+  background-color: #E8E8E8; }
+
+h1 {
+  color: gray;
+  font-family: 'Dorsa', sans-serif;
+  font-weight: lighter; }
+
+header {
+  position: relative;
+  margin: 0px 0px 50px 0px;
+  padding: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #000; }
+  header header::after {
+    clear: both; }
+  header h1 {
+    font-family: Tahoma; }
+  header i.fa.fa-bars {
+    font-size: 20px; }
+  header span.menu {
+    float: right; }
+  header span:hover {
+    cursor: pointer; }
+  header span.signIn {
+    float: left; }
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  bottom: -67px;
+  background-color: #fff; }
+  .dropdown ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000; }
+  .dropdown li {
+    display: block;
+    padding-right: 5px;
+    padding-left: 5px; }
+  .dropdown a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px; }
+  .dropdown a:hover {
+    color: #777; }
+
+form.login-form {
+  margin-top: 10%;
+  border: 2px solid black;
+  width: 500px;
+  margin-left: 25%;
+  box-shadow: 1px 1px 82px #333; }
+  form.login-form button {
+    width: 100%; }
+
+button:hover {
+  background-color: #337AB7; }
+
+.form-control {
+  text-align: center; }
+
+.form-group {
+  margin-top: 5%;
+  padding-left: 2%;
+  padding-right: 2%; }
+
+.formContent {
+  margin-top: 50px;
+  background-color: #999;
+  padding: 1%; }
+  .formContent h3 {
+    text-align: center;
+    margin-top: 0; }
+  .formContent input {
+    width: 24%;
+    display: inline-block;
+    border-radius: 4px;
+    border: none; }
+  .formContent button {
+    width: 100%;
+    color: #b6b6b6; }
+  .formContent textarea {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 100%;
+    border-radius: 4px;
+    border: none; }
+
+img {
+  background: white;
+  display: inline;
+  float: left;
+  margin: 0 15px 30px;
+  padding: 10px 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all .15s linear;
+  -moz-transition: all .15s linear;
+  transition: all .15s linear;
+  z-index: 0; }
+
+img :after {
+  color: #333;
+  font-size: 20px;
+  content: attr(title);
+  position: relative;
+  top: 15px; }
+
+img {
+  display: block;
+  width: 400px;
+  height: 300px; }
+
+img :nth-child(2n) {
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+  transform: rotate(4deg); }
+
+img :nth-child(3n) {
+  -webkit-transform: rotate(-24deg);
+  -moz-transform: rotate(-24deg);
+  transform: rotate(-24deg); }
+
+img :nth-child(4n) {
+  -webkit-transform: rotate(14deg);
+  -moz-transform: rotate(14deg);
+  transform: rotate(14deg); }
+
+img :nth-child(5n) {
+  -webkit-transform: rotate(-18deg);
+  -moz-transform: rotate(-18deg);
+  transform: rotate(-18deg); }
+
+img :hover {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  transform: scale(1.2);
+  z-index: 10;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); }
+
+h4 {
+  font-family: 'Special Elite', cursive; }
+
+.content {
+  width: 400px; }
+
+h4, .buttonWrapper {
+  margin-left: 30px; }
+
+.btn-warning {
+  background-color: #0066FF;
+  border: 2px solid #0066FF; }
+
+.btn-danger {
+  background-color: #0066FF;
+  border: 2px solid #0066FF; }

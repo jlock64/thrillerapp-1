@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
-var ModelView = require('./modelView');
+var ModelView = require('./modelview');
 
 module.exports = Backbone.View.extend({
   el: '.content',  // attaches to article with class content
@@ -12,7 +12,10 @@ module.exports = Backbone.View.extend({
 
   addOne: function(el) {
     var modelView = new ModelView({model: el});
-    this.$el.append(modelView.render().el);
+   this.$el.append(modelView.render().el);
+
+
+
   },
   addAll: function() {
     this.$el.html('');
