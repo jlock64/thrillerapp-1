@@ -13,14 +13,17 @@ module.exports = Backbone.View.extend({
     event.preventDefault();
 
     this.model.set({
-      name: this.$el.find('').val(),
-      title: this.$el.find('').val(),
-      location: this.$el.find('').val(),
-      summary: this.$el.find('').val(),
-      image: this.$el.find('').val(),
+      name: this.$el.find('name').val(),
+      title: this.$el.find('title').val(),
+      location: this.$el.find('location').val(),
+      summary: this.$el.find('summary').val(),
+      image: this.$el.find('image').val(),
     })
   },
-  deleteThrill: function(){
+  toggleEdit: function(){
+    this.$el.find('.editSection').toggleClass('editSection');
+  },
+  deleteThrill: function() {
     this.model.destroy();
   },
   initialize: function () {
