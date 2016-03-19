@@ -142,7 +142,7 @@ var _ = require('underscore');
 module.exports = Backbone.View.extend({
   el: '.loginForm',
   model: LoginModel,
-  url: '/login',
+  url: '/user',
   template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
@@ -155,7 +155,7 @@ module.exports = Backbone.View.extend({
     event.preventDefault();
     console.log(('clicky'));
     var loginToSave = {
-      username: this.$el.find('input[name="username"]').val(),
+      name: this.$el.find('input[name="username"]').val(),
       password: this.$el.find('input[name="password"]').val()
     };
     this.$el.find('input').val('');
@@ -176,7 +176,7 @@ module.exports = Backbone.View.extend({
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/login',
+  urlRoot: '/user',
   // id: '_id', // what is the java id called
   initialize: function() {
     console.log('login Model is alive');
@@ -233,6 +233,17 @@ module.exports = Backbone.View.extend({
   events: {
     'click .delete': 'deleteThrill',
     'click .edit': 'editThrill',
+  },
+  editThrill: function(){
+    event.preventDefault();
+
+    this.model.set({
+      name: this.$el.find('').val(),
+      title: this.$el.find('').val(),
+      location: this.$el.find('').val(),
+      summary: this.$el.find('').val(),
+      image: this.$el.find('').val(),
+    })
   },
   deleteThrill: function(){
     this.model.destroy();
@@ -13659,7 +13670,7 @@ module.exports = {
   ].join(''),
 
   login: [
-  `  <form class="form-horizontal">
+  `  <form class="form-horizontal login-form">
     <div class="form-group">
     <label for="inputName3" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
