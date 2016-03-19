@@ -1,90 +1,3 @@
-* {
-  box-sizing: border-box; }
-
-.hidden {
-  display: hidden; }
-
-.hero {
-  width: 100%;
-  height: 400px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/hero.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center; }
-
-body {
-  background-color: #E8E8E8; }
-
-h1 {
-  color: gray;
-  font-family: 'Dorsa', sans-serif;
-  font-weight: lighter; }
-
-header {
-  position: relative;
-  margin: 0px 0px 50px 0px;
-  padding: 0;
-  width: 100%;
-  background-color: #fff;
-  text-align: center;
-  border-bottom: 1px solid #000; }
-  header header::after {
-    clear: both; }
-  header h1 {
-    font-family: Tahoma; }
-  header i.fa.fa-bars {
-    font-size: 20px; }
-  header span.menu {
-    float: right; }
-  header span:hover {
-    cursor: pointer; }
-  header span.signIn {
-    float: left; }
-
-.dropdown {
-  position: absolute;
-  right: 0;
-  bottom: -67px;
-  background-color: #fff; }
-  .dropdown ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-    border-left: 1px solid #000; }
-  .dropdown li {
-    display: block;
-    padding-right: 5px;
-    padding-left: 5px; }
-  .dropdown a {
-    color: #000;
-    text-decoration: none;
-    font-size: 16px; }
-  .dropdown a:hover {
-    color: #777; }
-
-form.login-form {
-  margin-top: 10%;
-  border: 2px solid black;
-  width: 500px;
-  margin-left: 25%;
-  box-shadow: 1px 1px 82px #333; }
-  form.login-form button {
-    width: 100%; }
-
-button:hover {
-  background-color: #337AB7; }
-
-.form-control {
-  text-align: center; }
-
-.form-group {
-  margin-top: 5%;
-  padding-left: 2%;
-  padding-right: 2%; }
-
 .formContent {
   margin-top: 50px;
   background-color: #999;
@@ -183,3 +96,90 @@ h4, .buttonWrapper {
 .btn-danger {
   background-color: #0066FF;
   border: 2px solid #0066FF; }
+
+* {
+  box-sizing: border-box; }
+
+.hidden {
+  display: hidden; }
+
+.hero {
+  width: 100%;
+  height: 400px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/hero.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; }
+
+body {
+  background-color: #E8E8E8; }
+
+h1 {
+  color: gray;
+  font-family: 'Dorsa', sans-serif;
+  font-weight: lighter; }
+
+form.login-form {
+  margin-top: 10%;
+  border: 2px solid black;
+  width: 500px;
+  margin-left: 25%;
+  box-shadow: 1px 1px 82px #333; }
+  form.login-form button {
+    width: 100%; }
+
+button:hover {
+  background-color: #337AB7; }
+
+.form-control {
+  text-align: center; }
+
+.form-group {
+  margin-top: 5%;
+  padding-left: 2%;
+  padding-right: 2%; }
+
+header {
+  position: relative;
+  margin: 0px 0px 50px 0px;
+  padding: 0;
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  border-bottom: 1px solid #000; }
+  header header::after {
+    clear: both; }
+  header h1 {
+    font-family: Tahoma; }
+  header i.fa.fa-bars {
+    font-size: 20px; }
+  header span.menu {
+    float: right; }
+  header span:hover {
+    cursor: pointer; }
+  header span.signIn {
+    float: left; }
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  bottom: -67px;
+  background-color: #fff; }
+  .dropdown ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-left: 1px solid #000; }
+  .dropdown li {
+    display: block;
+    padding-right: 5px;
+    padding-left: 5px; }
+  .dropdown a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px; }
+  .dropdown a:hover {
+    color: #777; }
