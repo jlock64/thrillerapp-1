@@ -26,11 +26,7 @@ var collectionView = require('./collectionView');
 
 module.exports = Backbone.Collection.extend({
  model: Model,
-<<<<<<< HEAD
- url: 'http://tiny-tiny.herokuapp.com/collections/thriller',
-=======
  url: "http://tiny-tiny.herokuapp.com/collections/thriller",
->>>>>>> 5d31a85e824c8d68aa8eeb749ca3a4ffbfd39174
  initialize: function (){
    console.log("This is a thriller collection");
  }
@@ -202,11 +198,7 @@ $(document).ready(function() {
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-<<<<<<< HEAD
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
-=======
   // urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
->>>>>>> 5d31a85e824c8d68aa8eeb749ca3a4ffbfd39174
   initialize: function() {
     // console.log('It is alive');
     console.log(this.model);
@@ -13666,10 +13658,36 @@ module.exports = {
   ].join(''),
 
   login: [
-    `<input type="text" name="username" placeholder="username">
-     <input type="password" name="password" placeholder="password">
-     <button class="btn btn-default loginButton" type="submit">Button</button>`
+  `  <form class="form-horizontal">
+    <div class="form-group">
+    <label for="inputName3" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+    <input type="name" class="form-control" id="inputName3" placeholder="Name">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+    </div>
+    </form>`
+
   ].join('')
 }
+
+// `<input type="text" name="username" placeholder="username">
+//  <input type="password" name="password" placeholder="password">
+//  <button class="btn btn-default loginButton" type="submit">Button</button>`
 
 },{}]},{},[10]);
