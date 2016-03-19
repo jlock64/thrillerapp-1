@@ -243,14 +243,17 @@ module.exports = Backbone.View.extend({
     event.preventDefault();
 
     this.model.set({
-      name: this.$el.find('').val(),
-      title: this.$el.find('').val(),
-      location: this.$el.find('').val(),
-      summary: this.$el.find('').val(),
-      image: this.$el.find('').val(),
+      name: this.$el.find('name').val(),
+      title: this.$el.find('title').val(),
+      location: this.$el.find('location').val(),
+      summary: this.$el.find('summary').val(),
+      image: this.$el.find('image').val(),
     })
   },
-  deleteThrill: function(){
+  toggleEdit: function(){
+    this.$el.find('.editSection').toggleClass('editSection');
+  },
+  deleteThrill: function() {
     this.model.destroy();
   },
   initialize: function () {
@@ -13664,16 +13667,25 @@ module.exports = {
         <button class="btn btn-default edit" type="submit">Edit</button>
         <button class="btn btn-default delete" type="submit">Delete</button>
       </div>
-    </div>`
-  ].join(''),
-
-  editPost: [
-    `<input type="text" name="name" placeholder="<%= name %>">
+    </div>
+    <div class="editSection">
+    <input type="text" name="name" placeholder="<%= name %>">
      <input type="text" name="title" placeholder="<%= title %>">
      <input type="text" name="location" placeholder="<%= location %>">
      <input type="text" name="image" placeholder="imageUrl">
-     <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea>`
+     <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea></div>`
   ].join(''),
+
+  // editPost: [
+    // `<div class="editSection">
+    // <input type="text" name="name" placeholder="<%= name %>">
+    //  <input type="text" name="title" placeholder="<%= title %>">
+    //  <input type="text" name="location" placeholder="<%= location %>">
+    //  <input type="text" name="postDate" placeholder="<%= postDate %>">
+    //  <input type="text" name="date" placeholder="<%= date %>">
+    //  <input type="text" name="image" placeholder="imageUrl">
+    //  <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea></div>`
+  // ].join(''),
 
   login: [
   `  <form class="form-horizontal login-form">
