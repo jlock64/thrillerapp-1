@@ -47,7 +47,15 @@ public class ThrillerAppController {
         dbui.stop();
     }
 
-    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    @PostConstruct
+    public void init() throws PasswordStorage.CannotPerformOperationException {
+        User user = new User();
+        user.setName("Alice");
+        user.setPassword(PasswordStorage.createHash("password"));
+        users.save(user);
+    }
+
+    @RequestMapping(path = "/user", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session) throws Exception {
         User existingUser = users.findByName(user.getName());
         if (existingUser == null) {
@@ -62,11 +70,11 @@ public class ThrillerAppController {
         return existingUser;
     }
 
-    @RequestMapping(path = "/login", method = RequestMethod.GET)
-    public User getLogin(HttpSession session) {
-        String name = (String) session.getAttribute("name");
-        return users.findByName(name);
-    }
+//    @RequestMapping(path = "/login", method = RequestMethod.GET)
+//    public User getLogin(HttpSession session) {
+//        String name = (String) session.getAttribute("name");
+//        return users.findByName(name);
+//    }
 
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
     public void logout(HttpSession session) {
@@ -78,11 +86,11 @@ public class ThrillerAppController {
         return (List<User>) users.findAll();
     }
 
-    @RequestMapping(path = "/user", method = RequestMethod.POST)
-    public void addUser(@RequestBody User user) throws PasswordStorage.CannotPerformOperationException {
-        user.setPassword(PasswordStorage.createHash(user.getPassword()));
-        users.save(user);
-    }
+//    @RequestMapping(path = "/user", method = RequestMethod.POST)
+//    public void addUser(@RequestBody User user) throws PasswordStorage.CannotPerformOperationException {
+//        user.setPassword(PasswordStorage.createHash(user.getPassword()));
+//        users.save(user);
+//    }
 
     @RequestMapping(path = "/user/{id}", method = RequestMethod.PUT)
     public void updateUser(@RequestBody User user, @PathVariable("id") int id) {
