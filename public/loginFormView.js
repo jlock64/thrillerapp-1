@@ -7,7 +7,7 @@ var _ = require('underscore');
 module.exports = Backbone.View.extend({
   model: LoginModel,
   url: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
-  // template: _.template(tmpl.login),
+  template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
     this.render();
@@ -25,7 +25,7 @@ module.exports = Backbone.View.extend({
     this.View.add(this.model);
   },
   render: function() {
-    var markup = this.template(this.model.toJSON);
+    var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
   }

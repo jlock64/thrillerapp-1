@@ -22,24 +22,27 @@ module.exports = Backbone.View.extend({
 },{"./likesModelView":7,"backbone":13,"jquery":14,"underscore":15}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var Model = require ('./model');
+var collectionView = require('./collectionView');
+
 module.exports = Backbone.Collection.extend({
  model: Model,
- url: "http://tiny-tiny.herokuapp.com/collections/thriller",
+ url: "/thrill",
  initialize: function (){
    console.log("This is a thriller collection");
  }
 });
 
-},{"./model":11,"backbone":13}],3:[function(require,module,exports){
+},{"./collectionView":3,"./model":11,"backbone":13}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
 var ModelView = require('./modelView');
 
 module.exports = Backbone.View.extend({
-  el: '.content',
+  el: '.content',  // attaches to article with class content
   initialize: function() {
     this.addAll();
+    this.listenTo(this.collection, 'update', this.addAll);
   },
 
   addOne: function(el) {
@@ -47,7 +50,7 @@ module.exports = Backbone.View.extend({
     this.$el.append(modelView.render().el);
   },
   addAll: function() {
-    this.$el.empty();
+    this.$el.html('');
     _.each(this.collection.models, this.addOne, this);
   }
 });
@@ -59,33 +62,33 @@ var tmpl = require ('./templates');
 var Model = require ('./model');
 
 module.exports = Backbone.View.extend({
- el: '.formContent',
+ el: '.formContent', // attaches to the div with class formContent
  template: _.template(tmpl.createPost),
  events:{
-   'submit form': 'submitThriller'
+   'click .createButton': 'submitThriller'
  },
  submitThriller: function (event){
    event.preventDefault();
-   var el = this.$el
-   this.model.set({
-     name:  el.find('input[name="name"]').val(),
-     title:  el.find('input[name="title"]').val(),
-     postDate: el.find('input[name="postDate"]').val(),
-     date: el.find('input[name="date"]').val(),
-     location: el.find('input[name="location"]').val(),
-     image: el.find('input[name="image"]').val(),
-     summary: el.find('input[name="summary"]').val(),
-     favorite: el.find('input[name="favorite"]').val(),
-     favoriteRating: el.find('input[name="favoriteRating"]').val(),
-   });
-   this.model.save();
-   this.collection.add(this.model);
-   this.model = new Model ({});
+   var objToSave = {
+     name: this.$el.find('input[name="name"]').val(),
+     title: this.$el.find('input[name="title"]').val(),
+     location: this.$el.find('input[name="location"]').val(),
+     summary: this.$el.find('input[name="summary"]').val(),
+     image: this.$el.find('input[type="file"]').val(),
+   };
+   var myModel = new Model(objToSave);
+   myModel.save();
+   console.log(myModel);
+   window.glob = myModel
+   this.collection.add(myModel);
   },
   render: function (){
-    var markup = this.template(this.model.toJSON());
+    var markup = this.template();
     this.$el.html(markup);
     return this;
+  },
+  initialize: function() {
+    console.log('FORM VIEW');
   }
 });
 
@@ -123,7 +126,7 @@ module.exports = Backbone.View.extend({
   template: _.template(tmpl.post),
   initialize: function() {},
   render: function() {
-    var markup = this.template(this.model.toJSON);
+    var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
   }
@@ -139,7 +142,7 @@ var _ = require('underscore');
 module.exports = Backbone.View.extend({
   model: LoginModel,
   url: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
-  // template: _.template(tmpl.login),
+  template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
     this.render();
@@ -157,7 +160,7 @@ module.exports = Backbone.View.extend({
     this.View.add(this.model);
   },
   render: function() {
-    var markup = this.template(this.model.toJSON);
+    var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
   }
@@ -178,31 +181,28 @@ module.exports = Backbone.Model.extend({
 var Backbone = require('backbone');
 var $ = require('jquery');
 var Router = require('./router');
+var FormView = require('./formview');
 
 $(document).ready(function() {
   new Router();
   Backbone.history.start({pushstate: true});
 });
 
-},{"./router":16,"backbone":13,"jquery":14}],11:[function(require,module,exports){
+},{"./formview":4,"./router":16,"backbone":13,"jquery":14}],11:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
+  urlRoot: '/thrill',
   initialize: function() {
-    console.log('It is alive');
+    // console.log('It is alive');
     console.log(this.model);
   },
   defaults: {
     name: '',
     title: '',
-    postDate: '',
-    date: '',
     location: '',
-    image: 'http://fillmurray.com/250/250',
     summary: '',
-    favorite: '',
-    favoriteRating: ''
+    image: 'http://fillmurray.com/250/250',
   }
 });
 
@@ -13544,12 +13544,13 @@ return jQuery;
 
 },{}],16:[function(require,module,exports){
 var Backbone = require('backbone');
+var $ = require('jquery');
 var LikesCollection = require('./likesCollection');
 var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
 var ThrillerCollectionView = require('./collectionView');
 var LoginView = require('./loginFormView');
-var FormView = require('./formView');
+var FormView = require('./formview');
 
 module.exports = Backbone.Router.extend({
   subview: null,
@@ -13566,23 +13567,25 @@ module.exports = Backbone.Router.extend({
     likesCol.fetch().then(function(data) {
       console.log(likesCol.models.length); //data is ready
       that.renderSubview(new LikesCollectionView({collection: likesCol}));
+
     });
   },
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
-    //collection thrillerCol is still empty
+
     thrillerCol.fetch().then(function(data) {
-      console.log(thrillerCol.models.length); //data is ready
+      // console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      that.renderSubview(new FormView({}));
+      var newForm = new FormView({collection: thrillerCol})
+      newForm.render();
     });
   },
   login: function() {
     var that = this;
     var loginView = new LoginView();
     loginView.fetch().then(function(data) {
-      that.renderSubview(new LoginView({view: loginView}));
+      that.renderSubview(new LoginView({}));
     });
   },
   renderSubview: function(subview) {
@@ -13592,30 +13595,36 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formView":4,"./likesCollection":5,"./loginFormView":8,"backbone":13}],17:[function(require,module,exports){
+},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13,"jquery":14}],17:[function(require,module,exports){
+// <input type="text" name="postDate" placeholder="postDate">
+// <input type="text" name="date" placeholder="date">
+
 module.exports = {
   createPost: [
-    `<input type="text" name="name" placeholder="name">
-     <input type="text" name="title" placeholder="title">
-     <input type="text" name="location" placeholder="location">
-     <input type="text" name="postDate" placeholder="postDate">
-     <input type="text" name="date" placeholder="date">
-     <input type="text" name="image" placeholder="imageUrl">
-     <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>`
+    `<form class="">
+       <input type="text" name="name" placeholder="name">
+       <input type="text" name="title" placeholder="title">
+       <input type="text" name="location" placeholder="location">
+       <input type="file" name="image" id="inputFile">
+       <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
+       <button type="submit" class="btn btn-default createButton" value="create">Create</button>
+     </form>`
   ].join(''),
 
   post: [
-    `<div class="imgContainer">
-      <h3 class="location"><%= location %></h3>
-      <h1 class="title"><%= title %></h1>
-    </div>
-    <h4 class="name" ><%= name %></h4>
-    <span class="postDate"><%= postDate %></span>
-    <h4 class="date" ><%= date %></h4>
-    <div class="summaryWrapper">
-      <p class="summary"><%= summary %></p>
-      <div class="favoriteWrapper">
-        <input type="checkbox" class="favCheckbox">
+    `<div class="postContainer">
+      <div class="imgWrapper">
+      <img src="*"
+      </div>
+      <h4 class="name" ><%= name %></h4>
+      <h4 class="title"><%= title %></h1>
+      <h4 class="location"><%= location %></h3>
+      <div class="summaryWrapper">
+        <p class="summary"><%= summary %></p>
+      </div>
+      <div class="buttonWrapper">
+        <button class="btn btn-default" type="submit">Edit</button>
+        <button class="btn btn-default" type="submit">Delete</button>
       </div>
     </div>`
   ].join(''),
@@ -13634,7 +13643,7 @@ module.exports = {
     `<input type="text" name="username" placeholder="username">
      <input type="password" name="password" placeholder="password">
      <button type="button" class="loginButton" name="login">Login</button>`
-  ]
+  ].join('')
 }
 
 },{}]},{},[10]);
