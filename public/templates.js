@@ -25,8 +25,8 @@ module.exports = {
         <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
-        <button class="btn btn-default" type="submit">Edit</button>
-        <button class="btn btn-default" type="submit">Delete</button>
+        <button class="btn btn-default edit" type="submit">Edit</button>
+        <button class="btn btn-default delete" type="submit">Delete</button>
       </div>
     </div>`
   ].join(''),
@@ -62,7 +62,7 @@ module.exports = {
     </div>
     <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-default">Sign in</button>
+    <button type="button" class="btn btn-primary">Submit</button>
     </div>
     </div>
     </form>`

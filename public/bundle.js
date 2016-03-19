@@ -36,7 +36,7 @@ module.exports = Backbone.Collection.extend({
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
-var ModelView = require('./modelView');
+var ModelView = require('./modelview');
 
 module.exports = Backbone.View.extend({
   el: '.content',  // attaches to article with class content
@@ -55,7 +55,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./modelView":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
+},{"./modelview":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
 var Backbone = require ('backbone');
 var _ = require('underscore');
 var tmpl = require ('./templates');
@@ -198,10 +198,10 @@ $(document).ready(function() {
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  // urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
   initialize: function() {
-    // console.log('It is alive');
-    console.log(this.model);
+    console.log('It is alive');
+    // console.log(this.model);
   },
   defaults: {
     name: '',
@@ -13576,35 +13576,28 @@ module.exports = Backbone.Router.extend({
   likes: function() {
     var that = this;
     var likesCol = new LikesCollection();
+    new LoginView();
     //collection likesCol is still empty
     likesCol.fetch().then(function(data) {
       console.log(likesCol.models.length); //data is ready
       that.renderSubview(new LikesCollectionView({collection: likesCol}));
-
     });
+
   },
   homepage: function() {
     var that = this;
-
-    var loginForm = new LoginView({});
-    loginForm.render();
-
     var thrillerCol = new ThrillerCollection();
-
+    new LoginView()
     thrillerCol.fetch().then(function(data) {
       // console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
       var newForm = new FormView({collection: thrillerCol});
-      // var loginForm = new LoginView({});
       newForm.render();
     });
   },
   login: function() {
     var that = this;
-    var loginForm = new LoginView();
-    loginView.fetch().then(function(data) {
-      that.renderSubview(new LoginView({}));
-    });
+    that.renderSubview(new LoginView({}));
   },
   renderSubview: function(subview) {
     this.subview && this.subview.remove();
@@ -13641,8 +13634,8 @@ module.exports = {
         <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
-        <button class="btn btn-default" type="submit">Edit</button>
-        <button class="btn btn-default" type="submit">Delete</button>
+        <button class="btn btn-default edit" type="submit">Edit</button>
+        <button class="btn btn-default delete" type="submit">Delete</button>
       </div>
     </div>`
   ].join(''),
@@ -13678,7 +13671,7 @@ module.exports = {
     </div>
     <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-    <button type="submit" class="btn btn-default">Sign in</button>
+    <button type="button" class="btn btn-primary">Submit</button>
     </div>
     </div>
     </form>`
