@@ -1,5 +1,4 @@
 var Backbone = require('backbone');
-var $ = require('jquery');
 var LikesCollection = require('./likesCollection');
 var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
@@ -29,9 +28,11 @@ module.exports = Backbone.Router.extend({
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
+
     new LoginView()
+
     thrillerCol.fetch().then(function(data) {
-      // console.log(thrillerCol.models.length); //data is ready
+      console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
       var newForm = new FormView({collection: thrillerCol});
       newForm.render();
@@ -39,6 +40,7 @@ module.exports = Backbone.Router.extend({
   },
   login: function() {
     var that = this;
+
     that.renderSubview(new LoginView({}));
   },
   renderSubview: function(subview) {
