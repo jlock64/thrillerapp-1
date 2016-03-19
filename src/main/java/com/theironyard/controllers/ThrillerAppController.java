@@ -61,12 +61,12 @@ public class ThrillerAppController {
 
     @PostConstruct
     public void initi() {
-        Thrill thrill = new Thrill();
-        thrill.setTitle("TestTITLE");
-        thrill.setLocation("TestLOCATION");
-        thrill.setSummary("Test adding thrill SUMMARY");
-        thrill.setPhoto("imageurl.com");
-        thrills.save(thrill);
+//        Thrill thrill = new Thrill();
+//        thrill.setTitle("TestTITLE");
+//        thrill.setLocation("TestLOCATION");
+//        thrill.setSummary("Test adding thrill SUMMARY");
+//        thrill.setPhoto("imageurl.com");
+//        thrills.save(thrill);
     }
 
     @RequestMapping(path = "/user", method = RequestMethod.POST)
@@ -126,17 +126,6 @@ public class ThrillerAppController {
         String name = (String) session.getAttribute("name");
         User user = users.findByName(name);
         thrill.setUser(user);
-        MultipartFile image = thrill.getImage();
-
-        File dir = new File("public/images");
-        dir.mkdirs();
-        File photoFile = File.createTempFile("image", image.getOriginalFilename(), dir);
-        FileOutputStream fos = new FileOutputStream(photoFile);
-        fos.write(image.getBytes());
-        String profileFileName = photoFile.getName();
-        thrill.setProfileFileName(profileFileName);
-
-
         thrills.save(thrill);
         return thrill;
     }
