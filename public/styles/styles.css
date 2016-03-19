@@ -14,7 +14,7 @@
   background-position: center; }
 
 body {
-  background-color: #E8E8E8; }
+  background-color: #fff; }
 
 h1 {
   color: gray;
@@ -176,10 +176,10 @@ h4 {
 h4, .buttonWrapper {
   margin-left: 30px; }
 
-.btn-warning {
+.edit {
   background-color: #0066FF;
   border: 2px solid #0066FF; }
 
-.btn-danger {
+.delete {
   background-color: #0066FF;
   border: 2px solid #0066FF; }

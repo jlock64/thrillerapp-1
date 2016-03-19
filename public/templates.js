@@ -23,9 +23,8 @@ module.exports = {
       <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
-
-        <button class="btn btn-default edit" type="submit">Edit</button>
-        <button class="btn btn-default delete" type="submit">Delete</button>
+      <button class="btn btn-danger edit" type="submit">Edit</button>
+      <button class="btn btn-warning delete" type="submit">Delete</button>
       </div>
     </div>`
   ].join(''),
