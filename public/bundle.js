@@ -47,7 +47,10 @@ module.exports = Backbone.View.extend({
 
   addOne: function(el) {
     var modelView = new ModelView({model: el});
-    this.$el.append(modelView.render().el);
+   this.$el.append(modelView.render().el);
+
+
+
   },
   addAll: function() {
     this.$el.html('');
@@ -82,11 +85,13 @@ module.exports = Backbone.View.extend({
    window.glob = myModel
    this.collection.add(myModel);
   },
+
   render: function (){
     var markup = this.template();
     this.$el.html(markup);
     return this;
-  },
+},
+
   initialize: function() {
     console.log('FORM VIEW');
   }
@@ -13578,7 +13583,6 @@ return jQuery;
 
 },{}],16:[function(require,module,exports){
 var Backbone = require('backbone');
-var $ = require('jquery');
 var LikesCollection = require('./likesCollection');
 var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
@@ -13608,9 +13612,11 @@ module.exports = Backbone.Router.extend({
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
+
     new LoginView()
+
     thrillerCol.fetch().then(function(data) {
-      // console.log(thrillerCol.models.length); //data is ready
+      console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
       var newForm = new FormView({collection: thrillerCol});
       newForm.render();
@@ -13618,6 +13624,7 @@ module.exports = Backbone.Router.extend({
   },
   login: function() {
     var that = this;
+
     that.renderSubview(new LoginView({}));
   },
   renderSubview: function(subview) {
@@ -13627,7 +13634,7 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13,"jquery":14}],17:[function(require,module,exports){
+},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13}],17:[function(require,module,exports){
 module.exports = {
   createPost: [
     `<form class="form-inline">
@@ -13650,9 +13657,10 @@ module.exports = {
       <h4 class="title"><%= title %></h1>
       <h4 class="location"><%= location %></h3>
       <div class="summaryWrapper">
-        <p class="summary"><%= summary %></p>
+      <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
+
         <button class="btn btn-default edit" type="submit">Edit</button>
         <button class="btn btn-default delete" type="submit">Delete</button>
       </div>
@@ -13663,8 +13671,6 @@ module.exports = {
     `<input type="text" name="name" placeholder="<%= name %>">
      <input type="text" name="title" placeholder="<%= title %>">
      <input type="text" name="location" placeholder="<%= location %>">
-     <input type="text" name="postDate" placeholder="<%= postDate %>">
-     <input type="text" name="date" placeholder="<%= date %>">
      <input type="text" name="image" placeholder="imageUrl">
      <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea>`
   ].join(''),

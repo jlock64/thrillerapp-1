@@ -1,11 +1,18 @@
 0 info it worked if it ends with ok
 <<<<<<< HEAD
+1 verbose cli [ '/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/node',
+1 verbose cli   '/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/npm',
+=======
+<<<<<<< HEAD
 1 verbose cli [ '/Users/Home/.nvm/versions/node/v5.5.0/bin/node',
 1 verbose cli   '/Users/Home/.nvm/versions/node/v5.5.0/bin/npm',
+>>>>>>> f4ae156cf6d15aa4f30adba800f57b78675356e5
 1 verbose cli   'run',
 1 verbose cli   'start' ]
 2 info using npm@3.3.12
 3 info using node@v5.5.0
+<<<<<<< HEAD
+=======
 =======
 1 verbose cli [ '/Users/Hank/.nvm/versions/node/v5.7.0/bin/node',
 1 verbose cli   '/Users/Hank/.nvm/versions/node/v5.7.0/bin/npm',
@@ -14,11 +21,16 @@
 2 info using npm@3.6.0
 3 info using node@v5.7.0
 >>>>>>> 3c4706112bdd5b332b188c008bdc7e70a5810d7a
+>>>>>>> f4ae156cf6d15aa4f30adba800f57b78675356e5
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info lifecycle thrillerapp-1@1.0.0~prestart: thrillerapp-1@1.0.0
 6 silly lifecycle thrillerapp-1@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle thrillerapp-1@1.0.0~start: thrillerapp-1@1.0.0
 8 verbose lifecycle thrillerapp-1@1.0.0~start: unsafe-perm in lifecycle true
+<<<<<<< HEAD
+9 verbose lifecycle thrillerapp-1@1.0.0~start: PATH: /Users/candacecohen/.nvm/versions/node/v5.5.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/candacecohen/Desktop/thrillerapp-1/public/node_modules/.bin:/Users/candacecohen/.nvm/versions/node/v5.5.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+10 verbose lifecycle thrillerapp-1@1.0.0~start: CWD: /Users/candacecohen/Desktop/thrillerapp-1/public
+=======
 <<<<<<< HEAD
 9 verbose lifecycle thrillerapp-1@1.0.0~start: PATH: /Users/Home/.nvm/versions/node/v5.5.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/Home/theIronYardAssignments/thrillerapp/public/node_modules/.bin:/Users/Home/.nvm/versions/node/v5.5.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 10 verbose lifecycle thrillerapp-1@1.0.0~start: CWD: /Users/Home/theIronYardAssignments/thrillerapp/public
@@ -26,21 +38,36 @@
 9 verbose lifecycle thrillerapp-1@1.0.0~start: PATH: /Users/Hank/.nvm/versions/node/v5.7.0/lib/node_modules/npm/bin/node-gyp-bin:/Users/Hank/Documents/thrillerapp-1/public/node_modules/.bin:/Users/Hank/.nvm/versions/node/v5.7.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 10 verbose lifecycle thrillerapp-1@1.0.0~start: CWD: /Users/Hank/Documents/thrillerapp-1/public
 >>>>>>> 3c4706112bdd5b332b188c008bdc7e70a5810d7a
+>>>>>>> f4ae156cf6d15aa4f30adba800f57b78675356e5
 11 silly lifecycle thrillerapp-1@1.0.0~start: Args: [ '-c', 'cd ../ && java -jar ThrillerApp-0.0.1-SNAPSHOT.jar' ]
 12 silly lifecycle thrillerapp-1@1.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle thrillerapp-1@1.0.0~start: Failed to exec start script
 14 verbose stack Error: thrillerapp-1@1.0.0 start: `cd ../ && java -jar ThrillerApp-0.0.1-SNAPSHOT.jar`
 14 verbose stack Exit status 1
 <<<<<<< HEAD
+14 verbose stack     at EventEmitter.<anonymous> (/Users/candacecohen/.nvm/versions/node/v5.5.0/lib/node_modules/npm/lib/utils/lifecycle.js:232:16)
+14 verbose stack     at emitTwo (events.js:100:13)
+14 verbose stack     at EventEmitter.emit (events.js:185:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Users/candacecohen/.nvm/versions/node/v5.5.0/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+=======
+<<<<<<< HEAD
 14 verbose stack     at EventEmitter.<anonymous> (/Users/Home/.nvm/versions/node/v5.5.0/lib/node_modules/npm/lib/utils/lifecycle.js:232:16)
 14 verbose stack     at emitTwo (events.js:100:13)
 14 verbose stack     at EventEmitter.emit (events.js:185:7)
 14 verbose stack     at ChildProcess.<anonymous> (/Users/Home/.nvm/versions/node/v5.5.0/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+>>>>>>> f4ae156cf6d15aa4f30adba800f57b78675356e5
 14 verbose stack     at emitTwo (events.js:100:13)
 14 verbose stack     at ChildProcess.emit (events.js:185:7)
 14 verbose stack     at maybeClose (internal/child_process.js:821:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 15 verbose pkgid thrillerapp-1@1.0.0
+<<<<<<< HEAD
+16 verbose cwd /Users/candacecohen/Desktop/thrillerapp-1/public
+17 error Darwin 15.3.0
+18 error argv "/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/node" "/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/npm" "run" "start"
+19 error node v5.5.0
+20 error npm  v3.3.12
+=======
 16 verbose cwd /Users/Home/theIronYardAssignments/thrillerapp/public
 17 error Darwin 14.5.0
 18 error argv "/Users/Home/.nvm/versions/node/v5.5.0/bin/node" "/Users/Home/.nvm/versions/node/v5.5.0/bin/npm" "run" "start"
@@ -62,6 +89,7 @@
 19 error node v5.7.0
 20 error npm  v3.6.0
 >>>>>>> 3c4706112bdd5b332b188c008bdc7e70a5810d7a
+>>>>>>> f4ae156cf6d15aa4f30adba800f57b78675356e5
 21 error code ELIFECYCLE
 22 error thrillerapp-1@1.0.0 start: `cd ../ && java -jar ThrillerApp-0.0.1-SNAPSHOT.jar`
 22 error Exit status 1
@@ -74,10 +102,14 @@
 <<<<<<< HEAD
 23 error You can get their info via:
 =======
+<<<<<<< HEAD
+23 error You can get their info via:
+=======
 23 error You can get information on how to open an issue for this project with:
 23 error     npm bugs thrillerapp-1
 23 error Or if that isn't available, you can get their info via:
 >>>>>>> 3c4706112bdd5b332b188c008bdc7e70a5810d7a
+>>>>>>> f4ae156cf6d15aa4f30adba800f57b78675356e5
 23 error     npm owner ls thrillerapp-1
 23 error There is likely additional logging output above.
 24 verbose exit [ 1, true ]

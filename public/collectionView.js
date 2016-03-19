@@ -12,7 +12,10 @@ module.exports = Backbone.View.extend({
 
   addOne: function(el) {
     var modelView = new ModelView({model: el});
-    this.$el.append(modelView.render().el);
+   this.$el.append(modelView.render().el);
+
+
+
   },
   addAll: function() {
     this.$el.html('');
