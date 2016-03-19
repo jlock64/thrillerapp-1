@@ -1,6 +1,7 @@
 package com.theironyard.controllers;
 
 import com.theironyard.entities.Favorite;
+import com.theironyard.entities.Photo;
 import com.theironyard.entities.Thrill;
 import com.theironyard.entities.User;
 import com.theironyard.services.FavoriteRepository;
@@ -11,10 +12,13 @@ import com.theironyard.utilities.PasswordStorage;
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -57,12 +61,12 @@ public class ThrillerAppController {
 
     @PostConstruct
     public void initi() {
-        Thrill thrill = new Thrill();
-        thrill.setTitle("TestTITLE");
-        thrill.setLocation("TestLOCATION");
-        thrill.setSummary("Test adding thrill SUMMARY");
-        thrill.setPhoto("imageurl.com");
-        thrills.save(thrill);
+//        Thrill thrill = new Thrill();
+//        thrill.setTitle("TestTITLE");
+//        thrill.setLocation("TestLOCATION");
+//        thrill.setSummary("Test adding thrill SUMMARY");
+//        thrill.setPhoto("imageurl.com");
+//        thrills.save(thrill);
     }
 
     @RequestMapping(path = "/user", method = RequestMethod.POST)
@@ -118,7 +122,7 @@ public class ThrillerAppController {
     }
 
     @RequestMapping(path = "/thrill", method = RequestMethod.POST)
-    public Thrill addThrill(@RequestBody Thrill thrill, HttpSession session) {
+    public Thrill addThrill(@RequestBody Thrill thrill, HttpSession session) throws Exception {
         String name = (String) session.getAttribute("name");
         User user = users.findByName(name);
         thrill.setUser(user);
