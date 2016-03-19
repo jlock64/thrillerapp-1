@@ -1,13 +1,14 @@
+// <input type="text" name="postDate" placeholder="postDate">
+// <input type="text" name="date" placeholder="date">
+
 module.exports = {
   createPost: [
-    `<form><input type="text" name="name" placeholder="name">
+    `<form class="form-control"><input type="text" name="name" placeholder="name">
      <input type="text" name="title" placeholder="title">
      <input type="text" name="location" placeholder="location">
-     <input type="text" name="postDate" placeholder="postDate">
-     <input type="text" name="date" placeholder="date">
-     <input type="text" name="image" placeholder="imageUrl">
+     <input type="file" name="image" id="exampleInputFile">
      <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
-     <button type="submit" class="createButton" value="create">Create</button></form>`
+     <button type="submit" class="btn btn-default createButton" value="create">Create</button></form>`
   ].join(''),
 
   post: [

@@ -39,7 +39,7 @@ var $ = require('jquery');
 var ModelView = require('./modelView');
 
 module.exports = Backbone.View.extend({
-  el: '.content',
+  el: '.content',  // attaches to article with class content
   initialize: function() {
     this.addAll();
     this.listenTo(this.collection, 'update', this.addAll);
@@ -62,7 +62,7 @@ var tmpl = require ('./templates');
 var Model = require ('./model');
 
 module.exports = Backbone.View.extend({
- el: '.formContent',
+ el: '.formContent', // attaches to the div with class formContent
  template: _.template(tmpl.createPost),
  events:{
    'click .createButton': 'submitThriller'
@@ -13604,16 +13604,17 @@ module.exports = Backbone.Router.extend({
 });
 
 },{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13,"jquery":14}],17:[function(require,module,exports){
+// <input type="text" name="postDate" placeholder="postDate">
+// <input type="text" name="date" placeholder="date">
+
 module.exports = {
   createPost: [
-    `<form><input type="text" name="name" placeholder="name">
+    `<form class="form-control"><input type="text" name="name" placeholder="name">
      <input type="text" name="title" placeholder="title">
      <input type="text" name="location" placeholder="location">
-     <input type="text" name="postDate" placeholder="postDate">
-     <input type="text" name="date" placeholder="date">
-     <input type="text" name="image" placeholder="imageUrl">
+     <input type="file" name="image" id="exampleInputFile">
      <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
-     <button type="submit" class="createButton" value="create">Create</button></form>`
+     <button type="submit" class="btn btn-default createButton" value="create">Create</button></form>`
   ].join(''),
 
   post: [

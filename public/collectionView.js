@@ -4,7 +4,7 @@ var $ = require('jquery');
 var ModelView = require('./modelView');
 
 module.exports = Backbone.View.extend({
-  el: '.content',
+  el: '.content',  // attaches to article with class content
   initialize: function() {
     this.addAll();
     this.listenTo(this.collection, 'update', this.addAll);
