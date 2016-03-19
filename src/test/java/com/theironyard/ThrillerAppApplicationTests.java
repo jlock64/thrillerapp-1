@@ -9,8 +9,10 @@ import com.theironyard.services.ThrillRepository;
 import com.theironyard.services.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -26,6 +28,7 @@ import java.time.LocalDateTime;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = ThrillerAppApplication.class)
 @WebAppConfiguration
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ThrillerAppApplicationTests {
 	@Autowired
 	UserRepository users;
@@ -46,15 +49,15 @@ public class ThrillerAppApplicationTests {
 
 	@Before
 	public void before() {
-		users.deleteAll();
-		thrills.deleteAll();
-		photos.deleteAll();
-		favorites.deleteAll();
+//		users.deleteAll();
+//		thrills.deleteAll();
+//		photos.deleteAll();
+//		favorites.deleteAll();
 		mockMvc = MockMvcBuilders.webAppContextSetup(wap).build();
 	}
 
 	@Test
-	public void testAddUser() throws Exception {
+	public void test1AddUser() throws Exception {
 		User user = new User();
 		user.setName("Alice");
 		user.setPassword("password");
@@ -69,17 +72,17 @@ public class ThrillerAppApplicationTests {
 		Assert.assertTrue(users.count() == 1);
 	}
 
-//    @Test
-//    public void testDeleteUser() throws Exception {
-//        testAddUser();
-//        mockMvc.perform(
-//                MockMvcRequestBuilders.delete("/user/1")
-//        );
-//        Assert.assertTrue(users.count() == 0);
-//    }
+    @Test
+    public void test2DeleteUser() throws Exception {
+//        test1AddUser();
+        mockMvc.perform(
+                MockMvcRequestBuilders.delete("/user/1")
+        );
+        Assert.assertTrue(users.count() == 0);
+    }
 
 	@Test
-	public void testLogin() throws Exception {
+	public void test3Login() throws Exception {
 		User user = new User();
 		user.setName("Alice");
 		user.setPassword("password");
@@ -94,15 +97,12 @@ public class ThrillerAppApplicationTests {
 	}
 
 //	@Test
-//	public void testAddThrill() throws Exception {
-//        testAddUser();
-//        testLogin();
-////		User user = new User();
+//	public void test4AddThrill() throws Exception {
+//
 //		Thrill thrill = new Thrill();
-////        thrill.setUser(users.findByName("Alice"));
 //		thrill.setTitle("TestTITLE");
-//		thrill.setPostTime(LocalDateTime.now());
-//		thrill.setDate(LocalDate.now());
+////		thrill.setPostTime(LocalDateTime.now());
+////		thrill.setDate(LocalDate.now());
 //		thrill.setLocation("TestLOCATION");
 //		thrill.setSummary("Test adding thrill SUMMARY");
 //		ObjectMapper mapper = new ObjectMapper();
@@ -111,7 +111,7 @@ public class ThrillerAppApplicationTests {
 //				MockMvcRequestBuilders.post("/thrill")
 //					.content(json)
 //					.contentType("application/json")
-//					.sessionAttr("name", "Alice")
+////					.sessionAttr("name", "Alice")
 //		);
 //		Assert.assertTrue(thrills.count() == 1);
 //	}
