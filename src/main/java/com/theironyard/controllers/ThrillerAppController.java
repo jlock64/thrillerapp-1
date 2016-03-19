@@ -55,6 +55,16 @@ public class ThrillerAppController {
         users.save(user);
     }
 
+    @PostConstruct
+    public void initi() {
+        Thrill thrill = new Thrill();
+        thrill.setTitle("TestTITLE");
+        thrill.setLocation("TestLOCATION");
+        thrill.setSummary("Test adding thrill SUMMARY");
+        thrill.setPhoto("imageurl.com");
+        thrills.save(thrill);
+    }
+
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session) throws Exception {
         User existingUser = users.findByName(user.getName());
