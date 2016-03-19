@@ -7,7 +7,7 @@ var _ = require('underscore');
 module.exports = Backbone.View.extend({
   el: '.loginForm',
   model: LoginModel,
-  url: '/login',
+  url: '/user',
   template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
@@ -20,7 +20,7 @@ module.exports = Backbone.View.extend({
     event.preventDefault();
     console.log(('clicky'));
     var loginToSave = {
-      username: this.$el.find('input[name="username"]').val(),
+      name: this.$el.find('input[name="username"]').val(),
       password: this.$el.find('input[name="password"]').val()
     };
     this.$el.find('input').val('');
