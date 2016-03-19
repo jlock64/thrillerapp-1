@@ -4,7 +4,7 @@ var tmpl = require ('./templates');
 var Model = require ('./model');
 
 module.exports = Backbone.View.extend({
- el: '.formContent',
+ el: '.formContent', // attaches to the div with class formContent
  template: _.template(tmpl.createPost),
  events:{
    'click .createButton': 'submitThriller'
