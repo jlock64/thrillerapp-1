@@ -1,15 +1,8 @@
-header {
-  margin: 0px 0px 50px 0px;
-  padding: 0;
-  width: 100%;
-  background-color: #fff;
-  text-align: center;
-  border-bottom: 1px solid #000; }
-  header h1 {
-    font-family: Tahoma; }
-
 .formContent {
   margin-top: 50px; }
+
+.hidden {
+  display: hidden; }
 
 .hero {
   width: 100%;
