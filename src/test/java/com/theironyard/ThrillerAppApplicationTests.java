@@ -56,30 +56,30 @@
 //		mockMvc = MockMvcBuilders.webAppContextSetup(wap).build();
 //	}
 //
-//	@Test
-//	public void test1AddUser() throws Exception {
-//		User user = new User();
-//		user.setName("Alice");
-//		user.setPassword("password");
-//		ObjectMapper mapper = new ObjectMapper();
-//		String json = mapper.writeValueAsString(user);
-//		mockMvc.perform(
-//				MockMvcRequestBuilders.post("/user")
-//						.content(json)
-//						.contentType("application/json")
-//		);
-//
-//		Assert.assertTrue(users.count() == 1);
-//	}
-//
-//    @Test
-//    public void test2DeleteUser() throws Exception {
-////        test1AddUser();
-//        mockMvc.perform(
-//                MockMvcRequestBuilders.delete("/user/1")
-//        );
-//        Assert.assertTrue(users.count() == 0);
-//    }
+////	@Test
+////	public void test1AddUser() throws Exception {
+////		User user = new User();
+////		user.setName("Alice");
+////		user.setPassword("password");
+////		ObjectMapper mapper = new ObjectMapper();
+////		String json = mapper.writeValueAsString(user);
+////		mockMvc.perform(
+////				MockMvcRequestBuilders.post("/user")
+////						.content(json)
+////						.contentType("application/json")
+////		);
+////
+////		Assert.assertTrue(users.count() == 1);
+////	}
+////
+////    @Test
+////    public void test2DeleteUser() throws Exception {
+//////        test1AddUser();
+////        mockMvc.perform(
+////                MockMvcRequestBuilders.delete("/user/1")
+////        );
+////        Assert.assertTrue(users.count() == 0);
+////    }
 //
 //	@Test
 //	public void test3Login() throws Exception {
@@ -98,13 +98,13 @@
 //
 //	@Test
 //	public void test4AddThrill() throws Exception {
-//
 //		Thrill thrill = new Thrill();
 //		thrill.setTitle("TestTITLE");
 ////		thrill.setPostTime(LocalDateTime.now());
 ////		thrill.setDate(LocalDate.now());
 //		thrill.setLocation("TestLOCATION");
 //		thrill.setSummary("Test adding thrill SUMMARY");
+//        thrill.setPhoto("imageurl.com");
 //		ObjectMapper mapper = new ObjectMapper();
 //		String json = mapper.writeValueAsString(thrill);
 //		mockMvc.perform(
