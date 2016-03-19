@@ -89,11 +89,11 @@ h4 {
 h4, .buttonWrapper {
   margin-left: 30px; }
 
-.btn-warning {
+.edit {
   background-color: #0066FF;
   border: 2px solid #0066FF; }
 
-.btn-danger {
+.delete {
   background-color: #0066FF;
   border: 2px solid #0066FF; }
 
