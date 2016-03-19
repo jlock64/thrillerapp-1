@@ -2,14 +2,24 @@
 1 verbose cli [ '/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/node',
 1 verbose cli   '/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/npm',
 1 verbose cli   'run',
+<<<<<<< HEAD
+1 verbose cli   'start' ]
+=======
 1 verbose cli   'watch' ]
+>>>>>>> baab9b3477d5122e7dfca8bb010b9d7101f6ed8c
 2 info using npm@3.3.12
 3 info using node@v5.5.0
 4 verbose stack Error: ENOENT: no such file or directory, open '/Users/candacecohen/Desktop/thrillerapp-1/package.json'
 4 verbose stack     at Error (native)
+<<<<<<< HEAD
+5 verbose cwd /Users/Home/theIronYardAssignments/thrillerapp
+6 error Darwin 14.5.0
+7 error argv "/Users/Home/.nvm/versions/node/v5.5.0/bin/node" "/Users/Home/.nvm/versions/node/v5.5.0/bin/npm" "run" "start"
+=======
 5 verbose cwd /Users/candacecohen/Desktop/thrillerapp-1
 6 error Darwin 15.3.0
 7 error argv "/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/node" "/Users/candacecohen/.nvm/versions/node/v5.5.0/bin/npm" "run" "watch"
+>>>>>>> baab9b3477d5122e7dfca8bb010b9d7101f6ed8c
 8 error node v5.5.0
 9 error npm  v3.3.12
 10 error path /Users/candacecohen/Desktop/thrillerapp-1/package.json
