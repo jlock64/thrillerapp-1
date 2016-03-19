@@ -14,13 +14,9 @@ module.exports = Backbone.View.extend({
    var objToSave = {
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
-    //  postDate: this.$el.find('input[name="postDate"]').val(),
-    //  date: this.$el.find('input[name="date"]').val(),
      location: this.$el.find('input[name="location"]').val(),
-     image: this.$el.find('input[name="image"]').val(),
-     summary: this.$el.find('input[name="summary"]').val()
-    //  favorite: this.$el.find('input[name="favorite"]').val(),
-    //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
+     summary: this.$el.find('input[name="summary"]').val(),
+     image: this.$el.find('input[type="file"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
