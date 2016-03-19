@@ -9,6 +9,17 @@ module.exports = Backbone.View.extend({
     'click .delete': 'deleteThrill',
     'click .edit': 'editThrill',
   },
+  editThrill: function(){
+    event.preventDefault();
+
+    this.model.set({
+      name: this.$el.find('').val(),
+      title: this.$el.find('').val(),
+      location: this.$el.find('').val(),
+      summary: this.$el.find('').val(),
+      image: this.$el.find('').val(),
+    })
+  },
   deleteThrill: function(){
     this.model.destroy();
   },
