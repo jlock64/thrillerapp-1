@@ -26,7 +26,7 @@ var collectionView = require('./collectionView');
 
 module.exports = Backbone.Collection.extend({
  model: Model,
- url: "http://tiny-tiny.herokuapp.com/collections/thriller",
+ url: "/thrill",
  initialize: function (){
    console.log("This is a thriller collection");
  }
@@ -72,13 +72,9 @@ module.exports = Backbone.View.extend({
    var objToSave = {
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
-    //  postDate: this.$el.find('input[name="postDate"]').val(),
-    //  date: this.$el.find('input[name="date"]').val(),
      location: this.$el.find('input[name="location"]').val(),
-     image: this.$el.find('input[name="image"]').val(),
-     summary: this.$el.find('input[name="summary"]').val()
-    //  favorite: this.$el.find('input[name="favorite"]').val(),
-    //  favoriteRating: this.$el.find('input[name="favoriteRating"]').val(),
+     summary: this.$el.find('input[name="summary"]').val(),
+     image: this.$el.find('input[type="file"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
@@ -196,7 +192,7 @@ $(document).ready(function() {
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
+  urlRoot: '/thrill',
   initialize: function() {
     // console.log('It is alive');
     console.log(this.model);
@@ -204,13 +200,9 @@ module.exports = Backbone.Model.extend({
   defaults: {
     name: '',
     title: '',
-    postDate: '',
-    date: '',
     location: '',
-    image: 'http://fillmurray.com/250/250',
     summary: '',
-    favorite: '',
-    favoriteRating: ''
+    image: 'http://fillmurray.com/250/250',
   }
 });
 
@@ -13609,25 +13601,30 @@ module.exports = Backbone.Router.extend({
 
 module.exports = {
   createPost: [
-    `<form class="form-control"><input type="text" name="name" placeholder="name">
-     <input type="text" name="title" placeholder="title">
-     <input type="text" name="location" placeholder="location">
-     <input type="file" name="image" id="exampleInputFile">
-     <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
-     <button type="submit" class="btn btn-default createButton" value="create">Create</button></form>`
+    `<form class="">
+       <input type="text" name="name" placeholder="name">
+       <input type="text" name="title" placeholder="title">
+       <input type="text" name="location" placeholder="location">
+       <input type="file" name="image" id="inputFile">
+       <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller here"></textarea>
+       <button type="submit" class="btn btn-default createButton" value="create">Create</button>
+     </form>`
   ].join(''),
 
   post: [
-    `<div class="imgContainer">
-      <h3 class="location"><%= location %></h3>
-      <h1 class="title"><%= title %></h1>
-    </div>
-    <h4 class="name" ><%= name %></h4>
-    <span class="postDate"><%= postDate %></span>
-    <h4 class="date" ><%= date %></h4>
-    <div class="summaryWrapper">
-      <p class="summary"><%= summary %></p>
-      <div class="favoriteWrapper">
+    `<div class="postContainer">
+      <div class="imgWrapper">
+      <img src="*"
+      </div>
+      <h4 class="name" ><%= name %></h4>
+      <h4 class="title"><%= title %></h1>
+      <h4 class="location"><%= location %></h3>
+      <div class="summaryWrapper">
+        <p class="summary"><%= summary %></p>
+      </div>
+      <div class="buttonWrapper">
+        <button class="btn btn-default" type="submit">Edit</button>
+        <button class="btn btn-default" type="submit">Delete</button>
       </div>
     </div>`
   ].join(''),
