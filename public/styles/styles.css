@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 form {
   background-color: red; }
 
@@ -14,8 +15,13 @@ header {
   header h1 {
     font-family: Tahoma; }
 
+=======
+>>>>>>> 30e1792dfe0db00b625a911d48e9f7d5b15a789c
 .formContent {
   margin-top: 50px; }
+
+.hidden {
+  display: hidden; }
 
 .hero {
   width: 100%;
