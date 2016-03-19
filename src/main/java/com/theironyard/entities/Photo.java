@@ -19,13 +19,10 @@ public class Photo {
     @Column(nullable = false)
     String filename;
 
-    @Column(nullable = false)
-    LocalDateTime time;
 
-    public Photo(Thrill thrill, String filename, LocalDateTime time) {
+    public Photo(Thrill thrill, String filename) {
         this.thrill = thrill;
         this.filename = filename;
-        this.time = time;
     }
 
     public Photo() {
@@ -55,11 +52,4 @@ public class Photo {
         this.filename = filename;
     }
 
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
 }

@@ -44,6 +44,6 @@ module.exports = {
   login: [
     `<input type="text" name="username" placeholder="username">
      <input type="password" name="password" placeholder="password">
-     <button type="button" class="loginButton" name="login">Login</button>`
+     <button class="btn btn-default loginButton" type="submit">Button</button>`
   ].join('')
 }
