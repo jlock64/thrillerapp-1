@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
-var ModelView = require('./modelView');
+var ModelView = require('./modelview');
 
 module.exports = Backbone.View.extend({
   el: '.content',  // attaches to article with class content

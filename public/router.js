@@ -17,34 +17,31 @@ module.exports = Backbone.Router.extend({
   likes: function() {
     var that = this;
     var likesCol = new LikesCollection();
+    new LoginView();
     //collection likesCol is still empty
     likesCol.fetch().then(function(data) {
       console.log(likesCol.models.length); //data is ready
       that.renderSubview(new LikesCollectionView({collection: likesCol}));
     });
+
   },
   homepage: function() {
     var that = this;
-
-    var loginForm = new LoginView({});
-    loginForm.render();
-
     var thrillerCol = new ThrillerCollection();
-    //collection thrillerCol is still empty
+
+    new LoginView()
+
     thrillerCol.fetch().then(function(data) {
       console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
       var newForm = new FormView({collection: thrillerCol});
-      // var loginForm = new LoginView({});
       newForm.render();
     });
   },
   login: function() {
     var that = this;
-    var loginForm = new LoginView();
-    loginView.fetch().then(function(data) {
-      that.renderSubview(new LoginView({view: loginView}));
-    });
+
+    that.renderSubview(new LoginView({}));
   },
   renderSubview: function(subview) {
     this.subview && this.subview.remove();

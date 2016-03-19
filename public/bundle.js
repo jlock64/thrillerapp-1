@@ -36,7 +36,7 @@ module.exports = Backbone.Collection.extend({
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
-var ModelView = require('./modelView');
+var ModelView = require('./modelview');
 
 module.exports = Backbone.View.extend({
   el: '.content',  // attaches to article with class content
@@ -58,7 +58,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./modelView":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
+},{"./modelview":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
 var Backbone = require ('backbone');
 var _ = require('underscore');
 var tmpl = require ('./templates');
@@ -213,10 +213,10 @@ $(document).ready(function() {
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  // urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
   initialize: function() {
-    // console.log('It is alive');
-    console.log(this.model);
+    console.log('It is alive');
+    // console.log(this.model);
   },
   defaults: {
     name: '',
@@ -13590,34 +13590,31 @@ module.exports = Backbone.Router.extend({
   likes: function() {
     var that = this;
     var likesCol = new LikesCollection();
+    new LoginView();
     //collection likesCol is still empty
     likesCol.fetch().then(function(data) {
       console.log(likesCol.models.length); //data is ready
       that.renderSubview(new LikesCollectionView({collection: likesCol}));
     });
+
   },
   homepage: function() {
     var that = this;
-
-    var loginForm = new LoginView({});
-    loginForm.render();
-
     var thrillerCol = new ThrillerCollection();
-    //collection thrillerCol is still empty
+
+    new LoginView()
+
     thrillerCol.fetch().then(function(data) {
       console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
       var newForm = new FormView({collection: thrillerCol});
-      // var loginForm = new LoginView({});
       newForm.render();
     });
   },
   login: function() {
     var that = this;
-    var loginForm = new LoginView();
-    loginView.fetch().then(function(data) {
-      that.renderSubview(new LoginView({view: loginView}));
-    });
+
+    that.renderSubview(new LoginView({}));
   },
   renderSubview: function(subview) {
     this.subview && this.subview.remove();
@@ -13652,8 +13649,13 @@ module.exports = {
       <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
+<<<<<<< HEAD
       <button type="button" class="btn btn-warning">Edit</button>
       <button type="button" class="btn btn-danger">Delete</button>
+=======
+        <button class="btn btn-default edit" type="submit">Edit</button>
+        <button class="btn btn-default delete" type="submit">Delete</button>
+>>>>>>> 606010f6f456542b94a30e2ea206eabe92990eb1
       </div>
     </div>`
   ].join(''),
@@ -13667,10 +13669,36 @@ module.exports = {
   ].join(''),
 
   login: [
-    `<input type="text" name="username" placeholder="username">
-     <input type="password" name="password" placeholder="password">
-     <button class="btn btn-default loginButton" type="submit">Button</button>`
+  `  <form class="form-horizontal">
+    <div class="form-group">
+    <label for="inputName3" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+    <input type="name" class="form-control" id="inputName3" placeholder="Name">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <button type="button" class="btn btn-primary">Submit</button>
+    </div>
+    </div>
+    </form>`
+
   ].join('')
 }
+
+// `<input type="text" name="username" placeholder="username">
+//  <input type="password" name="password" placeholder="password">
+//  <button class="btn btn-default loginButton" type="submit">Button</button>`
 
 },{}]},{},[10]);

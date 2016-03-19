@@ -23,8 +23,13 @@ module.exports = {
       <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
+<<<<<<< HEAD
       <button type="button" class="btn btn-warning">Edit</button>
       <button type="button" class="btn btn-danger">Delete</button>
+=======
+        <button class="btn btn-default edit" type="submit">Edit</button>
+        <button class="btn btn-default delete" type="submit">Delete</button>
+>>>>>>> 606010f6f456542b94a30e2ea206eabe92990eb1
       </div>
     </div>`
   ].join(''),
@@ -38,8 +43,34 @@ module.exports = {
   ].join(''),
 
   login: [
-    `<input type="text" name="username" placeholder="username">
-     <input type="password" name="password" placeholder="password">
-     <button class="btn btn-default loginButton" type="submit">Button</button>`
+  `  <form class="form-horizontal">
+    <div class="form-group">
+    <label for="inputName3" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+    <input type="name" class="form-control" id="inputName3" placeholder="Name">
+    </div>
+    </div>
+    <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    </div>
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+    <button type="button" class="btn btn-primary">Submit</button>
+    </div>
+    </div>
+    </form>`
+
   ].join('')
 }
+
+// `<input type="text" name="username" placeholder="username">
+//  <input type="password" name="password" placeholder="password">
+//  <button class="btn btn-default loginButton" type="submit">Button</button>`
