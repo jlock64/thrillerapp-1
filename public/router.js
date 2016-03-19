@@ -27,18 +27,23 @@ module.exports = Backbone.Router.extend({
   },
   homepage: function() {
     var that = this;
+
+    var loginForm = new LoginView({});
+    loginForm.render();
+
     var thrillerCol = new ThrillerCollection();
 
     thrillerCol.fetch().then(function(data) {
       // console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      var newForm = new FormView({collection: thrillerCol})
+      var newForm = new FormView({collection: thrillerCol});
+      // var loginForm = new LoginView({});
       newForm.render();
     });
   },
   login: function() {
     var that = this;
-    var loginView = new LoginView();
+    var loginForm = new LoginView();
     loginView.fetch().then(function(data) {
       that.renderSubview(new LoginView({}));
     });

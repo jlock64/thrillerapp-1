@@ -140,8 +140,9 @@ var tmpl = require('./templates');
 var _ = require('underscore');
 
 module.exports = Backbone.View.extend({
+  el: '.loginForm',
   model: LoginModel,
-  url: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
+  url: '/login',
   template: _.template(tmpl.login),
   initialize: function() {
     console.log('login model created');
@@ -150,17 +151,22 @@ module.exports = Backbone.View.extend({
   events: {
     'click .loginButton': 'loginUser'
   },
-  loginUser: function(e) {
-    e.preventDefault();
-    this.model.set({
+  loginUser: function(event) {
+    event.preventDefault();
+    console.log(('clicky'));
+    var loginToSave = {
       username: this.$el.find('input[name="username"]').val(),
       password: this.$el.find('input[name="password"]').val()
-    });
+    };
     this.$el.find('input').val('');
-    this.View.add(this.model);
+    var myLogin = new LoginModel(loginToSave);
+    myLogin.save();
+    console.log(myLogin);
+    window.glob = myLogin;
+    // this.model.add(myLogin);
   },
   render: function() {
-    var markup = this.template(this.model.toJSON());
+    var markup = this.template();
     this.$el.html(markup);
     return this;
   }
@@ -170,8 +176,8 @@ module.exports = Backbone.View.extend({
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thrillerLogin',
-  id: '_id', // what is the java id called
+  urlRoot: '/login',
+  // id: '_id', // what is the java id called
   initialize: function() {
     console.log('login Model is alive');
   }
@@ -13572,18 +13578,23 @@ module.exports = Backbone.Router.extend({
   },
   homepage: function() {
     var that = this;
+
+    var loginForm = new LoginView({});
+    loginForm.render();
+
     var thrillerCol = new ThrillerCollection();
 
     thrillerCol.fetch().then(function(data) {
       // console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      var newForm = new FormView({collection: thrillerCol})
+      var newForm = new FormView({collection: thrillerCol});
+      // var loginForm = new LoginView({});
       newForm.render();
     });
   },
   login: function() {
     var that = this;
-    var loginView = new LoginView();
+    var loginForm = new LoginView();
     loginView.fetch().then(function(data) {
       that.renderSubview(new LoginView({}));
     });
@@ -13642,7 +13653,7 @@ module.exports = {
   login: [
     `<input type="text" name="username" placeholder="username">
      <input type="password" name="password" placeholder="password">
-     <button type="button" class="loginButton" name="login">Login</button>`
+     <button class="btn btn-default loginButton" type="submit">Button</button>`
   ].join('')
 }
 
