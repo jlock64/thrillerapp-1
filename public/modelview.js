@@ -5,6 +5,13 @@ var tmpl = require('./templates');
 module.exports = Backbone.View.extend({
   tagName: 'article',
   template: _.template(tmpl.post),
+  events: {
+    'click .delete': 'deleteThrill',
+    'click .edit': 'editThrill',
+  },
+  deleteThrill: function(){
+    this.model.destroy();
+  },
   initialize: function () {
     this.listenTo(this.model, 'change', this.render);
   },
