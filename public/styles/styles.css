@@ -10,6 +10,14 @@
   background-attachment: fixed;
   background-position: center; }
 
+body {
+  background-color: #E8E8E8; }
+
+h1 {
+  color: gray;
+  font-family: 'Dorsa', sans-serif;
+  font-weight: lighter; }
+
 header {
   margin: 0px 0px 50px 0px;
   padding: 0;
@@ -17,8 +25,83 @@ header {
   background-color: #fff;
   text-align: center;
   border-bottom: 1px solid #000; }
-  header h1 {
-    font-family: Tahoma; }
 
 .formContent {
   margin-top: 50px; }
+
+img {
+  background: white;
+  display: inline;
+  float: left;
+  margin: 0 15px 30px;
+  padding: 10px 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  -webkit-transition: all .15s linear;
+  -moz-transition: all .15s linear;
+  transition: all .15s linear;
+  z-index: 0; }
+
+img :after {
+  color: #333;
+  font-size: 20px;
+  content: attr(title);
+  position: relative;
+  top: 15px; }
+
+img {
+  display: block;
+  width: 400px;
+  height: 200px; }
+
+img :nth-child(2n) {
+  -webkit-transform: rotate(4deg);
+  -moz-transform: rotate(4deg);
+  transform: rotate(4deg); }
+
+img :nth-child(3n) {
+  -webkit-transform: rotate(-24deg);
+  -moz-transform: rotate(-24deg);
+  transform: rotate(-24deg); }
+
+img :nth-child(4n) {
+  -webkit-transform: rotate(14deg);
+  -moz-transform: rotate(14deg);
+  transform: rotate(14deg); }
+
+img :nth-child(5n) {
+  -webkit-transform: rotate(-18deg);
+  -moz-transform: rotate(-18deg);
+  transform: rotate(-18deg); }
+
+img :hover {
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  transform: scale(1.2);
+  z-index: 10;
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); }
+
+h4 {
+  font-family: 'Special Elite', cursive; }
+
+.content {
+  width: 400px; }
+
+h4, .buttonWrapper {
+  margin-left: 30px; }
+
+.btn-warning {
+  background-color: #0066FF;
+  border: 2px solid #0066FF; }
+
+.btn-danger {
+  background-color: #0066FF;
+  border: 2px solid #0066FF; }

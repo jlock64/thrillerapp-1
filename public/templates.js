@@ -22,11 +22,11 @@ module.exports = {
       <h4 class="title"><%= title %></h1>
       <h4 class="location"><%= location %></h3>
       <div class="summaryWrapper">
-        <p class="summary"><%= summary %></p>
+      <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
-        <button class="btn btn-default" type="submit">Edit</button>
-        <button class="btn btn-default" type="submit">Delete</button>
+      <button type="button" class="btn btn-warning">Edit</button>
+      <button type="button" class="btn btn-danger">Delete</button>
       </div>
     </div>`
   ].join(''),
@@ -35,8 +35,6 @@ module.exports = {
     `<input type="text" name="name" placeholder="<%= name %>">
      <input type="text" name="title" placeholder="<%= title %>">
      <input type="text" name="location" placeholder="<%= location %>">
-     <input type="text" name="postDate" placeholder="<%= postDate %>">
-     <input type="text" name="date" placeholder="<%= date %>">
      <input type="text" name="image" placeholder="imageUrl">
      <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea>`
   ].join(''),
