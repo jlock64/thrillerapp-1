@@ -57,13 +57,13 @@ header {
   .dropdown a:hover {
     color: #777; }
 
-form {
+form.login-form {
   margin-top: 10%;
   border: 2px solid black;
   width: 500px;
   margin-left: 25%;
   box-shadow: 1px 1px 82px #333; }
-  form button {
+  form.login-form button {
     width: 100%; }
 
 button:hover {
