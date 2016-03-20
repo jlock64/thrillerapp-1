@@ -51,24 +51,13 @@ public class ThrillerAppController {
         dbui.stop();
     }
 
-    @PostConstruct
-    public void init() throws PasswordStorage.CannotPerformOperationException {
-        User user = new User();
-        user.setName("Alice");
-        user.setPassword(PasswordStorage.createHash("password"));
-        users.save(user);
-    }
-
-    @PostConstruct
-    public void initi() {
-//        Thrill thrill = new Thrill();
-//        thrill.setTitle("TestTITLE");
-//        thrill.setLocation("TestLOCATION");
-//        thrill.setSummary("Test adding thrill SUMMARY");
-//        thrill.setPhoto("imageurl.com");
-//        thrills.save(thrill);
-    }
-
+//    @PostConstruct
+//    public void init() throws PasswordStorage.CannotPerformOperationException {
+//        User user = new User();
+//        user.setName("Alice");
+//        user.setPassword(PasswordStorage.createHash("password"));
+//        users.save(user);
+//    }
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session) throws Exception {
         User existingUser = users.findByName(user.getName());

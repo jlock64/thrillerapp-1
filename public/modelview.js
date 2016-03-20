@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
+var $ = require('jquery'); 
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
@@ -9,7 +10,7 @@ module.exports = Backbone.View.extend({
     'click .delete': 'deleteThrill',
     'click .edit': 'editThrill',
   },
-  editThrill: function(){
+  editThrill: function(event){
     event.preventDefault();
 
     this.model.set({

@@ -1,5 +1,6 @@
 var Backbone = require ('backbone');
 var _ = require('underscore');
+var $ = require('jquery');
 var tmpl = require ('./templates');
 var Model = require ('./model');
 
@@ -15,18 +16,18 @@ module.exports = Backbone.View.extend({
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
      location: this.$el.find('input[name="location"]').val(),
-     summary: this.$el.find('input[name="summary"]').val(),
-     image: this.$el.find('input[type="file"]').val(),
+     summary: this.$el.find('textarea').val(),
+     image: this.$el.find('input[name="image"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
-   console.log(myModel);
-   window.glob = myModel
    this.collection.add(myModel);
+   console.log(myModel);
+  //  this.collection.add(myModel);
   },
 
   render: function (){
-    var markup = this.template();
+    var markup = this.template;
     this.$el.html(markup);
     return this;
 },
