@@ -1,6 +1,6 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
-var $ = require('jquery'); 
+var $ = require('jquery');
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
@@ -12,13 +12,12 @@ module.exports = Backbone.View.extend({
   },
   editThrill: function(event){
     event.preventDefault();
-
     this.model.set({
       name: this.$el.find('name').val(),
       title: this.$el.find('title').val(),
       location: this.$el.find('location').val(),
       summary: this.$el.find('summary').val(),
-      image: this.$el.find('image').val(),
+      photo: this.$el.find('image').val(),
     })
   },
   toggleEdit: function(){
