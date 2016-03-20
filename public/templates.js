@@ -5,16 +5,16 @@ module.exports = {
          <input type="text" id="inputName" name="name" placeholder="name">
          <input type="text" id="inputTitle" name="title" placeholder="title">
          <input type="text" id="inputLocation" name="location" placeholder="location">
-         <input type="text" id="inputFile" name="location" placeholder="enter url">
+         <input type="text" id="inputFile" name="image" placeholder="enter url">
          <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller experience here"></textarea>
-       <button type="submit" id="createButton" class="btn btn-default" value="create">Create Thriller</button>
+       <button type="submit" id="createButton" class="btn btn-default createButton" value="create">Create Thriller</button>
      </form>`
   ].join(''),
 
   post: [
     `<div class="postContainer">
       <div class="imgWrapper">
-      <img src="*"
+      <img src="<%= image %>"
       </div>
       <h4 class="name" ><%= name %></h4>
       <h4 class="title"><%= title %></h1>
@@ -27,7 +27,7 @@ module.exports = {
       <button class="btn btn-warning delete" type="submit">Delete</button>
       </div>
     </div>
-    <div class="editSection">
+    <div class="editSection hidden">
     <input type="text" name="name" placeholder="<%= name %>">
      <input type="text" name="title" placeholder="<%= title %>">
      <input type="text" name="location" placeholder="<%= location %>">

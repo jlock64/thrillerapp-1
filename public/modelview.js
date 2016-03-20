@@ -9,7 +9,7 @@ module.exports = Backbone.View.extend({
     'click .delete': 'deleteThrill',
     'click .edit': 'editThrill',
   },
-  editThrill: function(){
+  editThrill: function(event){
     event.preventDefault();
 
     this.model.set({

@@ -21,21 +21,35 @@ $(document).ready(function() {
     $('.formContent').removeClass('hidden');
   });
 
-  // login in form revealed after click on signIn
+  // sign in link
   $('#signIn').on('click', function() {
     $(this).closest('header').siblings().addClass('hidden');
     $('.loginForm').removeClass('hidden');
   });
-  // click login Button to take you back to homepage
-  $('.loginButton').on('click', function() {
-  $('.loginForm').addClass('hidden');
+
+  // back to homepage with login button and header
+  $('.loginButton, .homeBtn').on('click', function() {
+  $('.loginForm, .formContent').addClass('hidden');
   $('.hero, .content').removeClass('hidden');
   });
 
-  $('#createButton').on('click', function() {
+  // create new post button
+  $('.formContent').on('click', '.createButton', function() {
     $('.formContent').addClass('hidden');
     $('.content').removeClass('hidden');
   });
+
+  $('#viewNavLink').on('click', function() {
+    $('.hero, .formContent').addClass('hidden');
+    $('.content').removeClass('hidden');
+  });
+
+  // edit button
+  $('.edit').on('click', function() {
+    $('.editSection').removeClass('hidden');
+  });
+
+  // home button
 
 
 }); // end of document ready
