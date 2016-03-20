@@ -7,7 +7,7 @@ module.exports = {
          <input type="text" id="inputLocation" name="location" placeholder="location">
          <input type="text" id="inputFile" name="location" placeholder="enter url">
          <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller experience here"></textarea>
-       <button type="submit" class="btn btn-default createButton" value="create">Create Thriller</button>
+       <button type="submit" id="createButton" class="btn btn-default" value="create">Create Thriller</button>
      </form>`
   ].join(''),
 

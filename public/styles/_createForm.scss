@@ -13,12 +13,14 @@
     border-radius: 4px;
     border: none;
   }
-  .createButton {
+  #createButton {
     width: 100%;
-    color: #b6b6b6;
+    color: #fff;
+    background-color: #ddd;
+    font-size: 20px;
   }
-  .createButton:hover {
-    background-color: green;
+  #createButton:hover {
+    background-color: #fff;
     color:#b6b6b6;
   }
   textarea {

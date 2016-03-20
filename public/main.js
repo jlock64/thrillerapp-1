@@ -32,7 +32,7 @@ $(document).ready(function() {
   $('.hero, .content').removeClass('hidden');
   });
 
-  $('.createButton').on('click', function() {
+  $('#createButton').on('click', function() {
     $('.formContent').addClass('hidden');
     $('.content').removeClass('hidden');
   });
