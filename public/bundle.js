@@ -26,7 +26,7 @@ var collectionView = require('./collectionView');
 
 module.exports = Backbone.Collection.extend({
  model: Model,
- url: "http://tiny-tiny.herokuapp.com/collections/thriller2",
+ url: "/thrill",
  initialize: function (){
    console.log("This is a thriller collection");
  }
@@ -165,7 +165,7 @@ module.exports = Backbone.View.extend({
     this.$el.find('input').val('');
     var myLogin = new LoginModel(loginToSave);
     myLogin.save();
-    console.log(myLogin);
+    console.log(myLogin.toJSON());
     window.glob = myLogin;
     // this.model.add(myLogin);
   },
@@ -248,7 +248,7 @@ $(document).ready(function() {
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller2',
+  urlRoot: '/thrill',
 
   initialize: function() {
     console.log('It is alive');
@@ -13730,13 +13730,13 @@ module.exports = {
     <div class="form-group">
     <label for="inputName3" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-    <input type="name" class="form-control" id="inputName3" placeholder="Name">
+    <input type="text" name="username" class="form-control" id="inputName3" placeholder="Name">
     </div>
     </div>
     <div class="form-group">
     <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Password">
     </div>
     </div>
     <div class="form-group">
