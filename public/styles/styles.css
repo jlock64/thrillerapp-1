@@ -39,7 +39,8 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center; }
+  background-position: center;
+  box-shadow: 1px 1px 15px #333; }
 
 body {
   background-color: #fff; }
@@ -88,7 +89,8 @@ header {
   header .fa-sign-in:before {
     margin-right: 5px; }
   header span.menu {
-    float: right; }
+    float: right;
+    margin-left: 35px; }
   header span:hover {
     cursor: pointer; }
   header span#signIn {
@@ -116,6 +118,13 @@ header {
   .dropdown li:hover {
     cursor: pointer;
     color: #777; }
+
+.content {
+  width: 100%;
+  margin-top: 50px; }
+  .content article {
+    width: 100%;
+    display: inline-block; }
 
 img {
   background: white;
@@ -180,9 +189,6 @@ img :hover {
 h4 {
   font-family: 'Special Elite', cursive; }
 
-.content {
-  width: 400px; }
-
 h4, .buttonWrapper {
   margin-left: 30px; }
 
@@ -193,3 +199,7 @@ h4, .buttonWrapper {
 .delete {
   background-color: #0066FF;
   border: 2px solid #0066FF; }
+
+p {
+  margin-left: 30px;
+  font-family: 'Special Elite', cursive; }
