@@ -60,17 +60,21 @@ public class ThrillerAppController {
 //    }
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session) throws Exception {
-        User existingUser = users.findByName(user.getName());
-        if (existingUser == null) {
+        if (users.findByName(user.getName())==null) {
             user.setPassword(PasswordStorage.createHash(user.getPassword()));
             users.save(user);
-            existingUser = user;
+            session.setAttribute("name", user.getName());
         }
-        else if (!PasswordStorage.verifyPassword(user.getPassword(), existingUser.getPassword())) {
-            throw new Exception("incorrect password!");
+        else if (users.findByName(user.getName())!=null) {
+            User existing = users.findByName(user.getName());
+            if (PasswordStorage.verifyPassword(user.getPassword(), existing.getPassword())) {
+                session.setAttribute("name", user.getName());
+            }
+            else if (!PasswordStorage.verifyPassword(user.getPassword(), existing.getPassword())) {
+                throw new Exception("Username and Password do not match");
+            }
         }
-        session.setAttribute("name", existingUser.getName());
-        return existingUser;
+        return user;
     }
 
 //    @RequestMapping(path = "/login", method = RequestMethod.GET)
