@@ -11,11 +11,13 @@
     display: inline-block;
     border-radius: 4px;
     border: none; }
-  .formContent .createButton {
+  .formContent #createButton {
     width: 100%;
-    color: #b6b6b6; }
-  .formContent .createButton:hover {
-    background-color: green;
+    color: #fff;
+    background-color: #ddd;
+    font-size: 20px; }
+  .formContent #createButton:hover {
+    background-color: #fff;
     color: #b6b6b6; }
   .formContent textarea {
     margin-top: 1%;
