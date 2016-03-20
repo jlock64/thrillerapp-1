@@ -26,7 +26,7 @@ module.exports = Backbone.View.extend({
     this.$el.find('input').val('');
     var myLogin = new LoginModel(loginToSave);
     myLogin.save();
-    console.log(myLogin);
+    console.log(myLogin.toJSON());
     window.glob = myLogin;
     // this.model.add(myLogin);
   },
