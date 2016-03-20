@@ -9,6 +9,9 @@ header {
    header::after {
      clear: both;
    }
+   .homeBtn:hover {
+     cursor: pointer;
+   }
    h1 {
      font-family: Tahoma;
    }

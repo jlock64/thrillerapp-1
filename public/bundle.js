@@ -26,7 +26,7 @@ var collectionView = require('./collectionView');
 
 module.exports = Backbone.Collection.extend({
  model: Model,
- url: "http://tiny-tiny.herokuapp.com/collections/thriller",
+ url: "http://tiny-tiny.herokuapp.com/collections/thriller2",
  initialize: function (){
    console.log("This is a thriller collection");
  }
@@ -48,8 +48,6 @@ module.exports = Backbone.View.extend({
   addOne: function(el) {
     var modelView = new ModelView({model: el});
    this.$el.append(modelView.render().el);
-
-
 
   },
   addAll: function() {
@@ -76,14 +74,13 @@ module.exports = Backbone.View.extend({
      name: this.$el.find('input[name="name"]').val(),
      title: this.$el.find('input[name="title"]').val(),
      location: this.$el.find('input[name="location"]').val(),
-     summary: this.$el.find('input[name="summary"]').val(),
-     image: this.$el.find('input[type="file"]').val(),
+     summary: this.$el.find('textarea').val(),
+     image: this.$el.find('input[name="image"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
    console.log(myModel);
-   window.glob = myModel
-   this.collection.add(myModel);
+  //  this.collection.add(myModel);
   },
 
   render: function (){
@@ -212,21 +209,35 @@ $(document).ready(function() {
     $('.formContent').removeClass('hidden');
   });
 
-  // login in form revealed after click on signIn
+  // sign in link
   $('#signIn').on('click', function() {
     $(this).closest('header').siblings().addClass('hidden');
     $('.loginForm').removeClass('hidden');
   });
-  // click login Button to take you back to homepage
-  $('.loginButton').on('click', function() {
-  $('.loginForm').addClass('hidden');
+
+  // back to homepage with login button and header
+  $('.loginButton, .homeBtn').on('click', function() {
+  $('.loginForm, .formContent').addClass('hidden');
   $('.hero, .content').removeClass('hidden');
   });
 
-  $('#createButton').on('click', function() {
+  // create new post button
+  $('.formContent').on('click', '.createButton', function() {
     $('.formContent').addClass('hidden');
     $('.content').removeClass('hidden');
   });
+
+  $('#viewNavLink').on('click', function() {
+    $('.hero, .formContent').addClass('hidden');
+    $('.content').removeClass('hidden');
+  });
+
+  // edit button
+  $('.edit').on('click', function() {
+    $('.editSection').removeClass('hidden');
+  });
+
+  // home button
 
 
 }); // end of document ready
@@ -235,7 +246,7 @@ $(document).ready(function() {
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller',
+  urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller2',
   initialize: function() {
     console.log('It is alive');
     // console.log(this.model);
@@ -245,7 +256,7 @@ module.exports = Backbone.Model.extend({
     title: '',
     location: '',
     summary: '',
-    image: 'http://fillmurray.com/250/250',
+    image: 'http://www.fillmurray.com/250/250',
   }
 });
 
@@ -261,7 +272,7 @@ module.exports = Backbone.View.extend({
     'click .delete': 'deleteThrill',
     'click .edit': 'editThrill',
   },
-  editThrill: function(){
+  editThrill: function(event){
     event.preventDefault();
 
     this.model.set({
@@ -13623,17 +13634,17 @@ module.exports = Backbone.Router.extend({
     "likes": "likes",
     "login": "login"
   },
-  likes: function() {
-    var that = this;
-    var likesCol = new LikesCollection();
-    new LoginView();
-    //collection likesCol is still empty
-    likesCol.fetch().then(function(data) {
-      console.log(likesCol.models.length); //data is ready
-      that.renderSubview(new LikesCollectionView({collection: likesCol}));
-    });
-
-  },
+  // likes: function() {
+  //   var that = this;
+  //   var likesCol = new LikesCollection();
+  //   new LoginView();
+  //   //collection likesCol is still empty
+  //   likesCol.fetch().then(function(data) {
+  //     console.log(likesCol.models.length); //data is ready
+  //     that.renderSubview(new LikesCollectionView({collection: likesCol}));
+  //   });
+  //
+  // },
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
@@ -13643,7 +13654,7 @@ module.exports = Backbone.Router.extend({
     thrillerCol.fetch().then(function(data) {
       console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      var newForm = new FormView({collection: thrillerCol});
+      var newForm = new FormView({});
       newForm.render();
     });
   },
@@ -13667,16 +13678,16 @@ module.exports = {
          <input type="text" id="inputName" name="name" placeholder="name">
          <input type="text" id="inputTitle" name="title" placeholder="title">
          <input type="text" id="inputLocation" name="location" placeholder="location">
-         <input type="text" id="inputFile" name="location" placeholder="enter url">
+         <input type="text" id="inputFile" name="image" placeholder="enter url">
          <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller experience here"></textarea>
-       <button type="submit" id="createButton" class="btn btn-default" value="create">Create Thriller</button>
+       <button type="submit" id="createButton" class="btn btn-default createButton" value="create">Create Thriller</button>
      </form>`
   ].join(''),
 
   post: [
     `<div class="postContainer">
       <div class="imgWrapper">
-      <img src="*"
+      <img src="<%= image %>"
       </div>
       <h4 class="name" ><%= name %></h4>
       <h4 class="title"><%= title %></h1>
@@ -13689,7 +13700,7 @@ module.exports = {
       <button class="btn btn-warning delete" type="submit">Delete</button>
       </div>
     </div>
-    <div class="editSection">
+    <div class="editSection hidden">
     <input type="text" name="name" placeholder="<%= name %>">
      <input type="text" name="title" placeholder="<%= title %>">
      <input type="text" name="location" placeholder="<%= location %>">

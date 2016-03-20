@@ -14,17 +14,17 @@ module.exports = Backbone.Router.extend({
     "likes": "likes",
     "login": "login"
   },
-  likes: function() {
-    var that = this;
-    var likesCol = new LikesCollection();
-    new LoginView();
-    //collection likesCol is still empty
-    likesCol.fetch().then(function(data) {
-      console.log(likesCol.models.length); //data is ready
-      that.renderSubview(new LikesCollectionView({collection: likesCol}));
-    });
-
-  },
+  // likes: function() {
+  //   var that = this;
+  //   var likesCol = new LikesCollection();
+  //   new LoginView();
+  //   //collection likesCol is still empty
+  //   likesCol.fetch().then(function(data) {
+  //     console.log(likesCol.models.length); //data is ready
+  //     that.renderSubview(new LikesCollectionView({collection: likesCol}));
+  //   });
+  //
+  // },
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
@@ -34,7 +34,7 @@ module.exports = Backbone.Router.extend({
     thrillerCol.fetch().then(function(data) {
       console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      var newForm = new FormView({collection: thrillerCol});
+      var newForm = new FormView({});
       newForm.render();
     });
   },
