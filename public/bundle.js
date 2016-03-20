@@ -76,7 +76,7 @@ module.exports = Backbone.View.extend({
      title: this.$el.find('input[name="title"]').val(),
      location: this.$el.find('input[name="location"]').val(),
      summary: this.$el.find('textarea').val(),
-     photo: this.$el.find('input[name="image"]').val(),
+     photo: this.$el.find('input[name="photo"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
@@ -13683,7 +13683,7 @@ module.exports = {
          <input type="text" id="inputName" name="name" placeholder="name">
          <input type="text" id="inputTitle" name="title" placeholder="title">
          <input type="text" id="inputLocation" name="location" placeholder="location">
-         <input type="text" id="inputFile" name="image" placeholder="enter url">
+         <input type="text" id="inputFile" name="photo" placeholder="enter url">
          <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller experience here"></textarea>
        <button type="submit" id="createButton" class="btn btn-default createButton" value="create">Create Thriller</button>
      </form>`
@@ -13692,7 +13692,7 @@ module.exports = {
   post: [
     `<div class="postContainer">
       <div class="imgWrapper">
-      <img src="<%= image %>"
+      <img src="<%= photo %>"
       </div>
       <h4 class="name" ><%= name %></h4>
       <h4 class="title"><%= title %></h1>
@@ -13709,8 +13709,8 @@ module.exports = {
     <input type="text" name="name" placeholder="<%= name %>">
      <input type="text" name="title" placeholder="<%= title %>">
      <input type="text" name="location" placeholder="<%= location %>">
-     <input type="text" name="image" placeholder="imageUrl">
-     <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea></div>`
+     <input type="text" name="image" placeholder="<%= photo %>">
+     <textarea name="summary" rows="8" cols="40" placeholder="<%= summary %>"></textarea></div>`
   ].join(''),
 
   // editPost: [
