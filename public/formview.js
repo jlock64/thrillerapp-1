@@ -1,5 +1,6 @@
 var Backbone = require ('backbone');
 var _ = require('underscore');
+var $ = require('jquery');
 var tmpl = require ('./templates');
 var Model = require ('./model');
 
@@ -20,12 +21,13 @@ module.exports = Backbone.View.extend({
    };
    var myModel = new Model(objToSave);
    myModel.save();
+   this.collection.add(myModel);
    console.log(myModel);
   //  this.collection.add(myModel);
   },
 
   render: function (){
-    var markup = this.template();
+    var markup = this.template;
     this.$el.html(markup);
     return this;
 },

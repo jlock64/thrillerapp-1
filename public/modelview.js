@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
+var $ = require('jquery'); 
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({

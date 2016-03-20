@@ -59,6 +59,7 @@ module.exports = Backbone.View.extend({
 },{"./modelview":12,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
 var Backbone = require ('backbone');
 var _ = require('underscore');
+var $ = require('jquery');
 var tmpl = require ('./templates');
 var Model = require ('./model');
 
@@ -79,12 +80,13 @@ module.exports = Backbone.View.extend({
    };
    var myModel = new Model(objToSave);
    myModel.save();
+   this.collection.add(myModel);
    console.log(myModel);
   //  this.collection.add(myModel);
   },
 
   render: function (){
-    var markup = this.template();
+    var markup = this.template;
     this.$el.html(markup);
     return this;
 },
@@ -94,7 +96,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./model":11,"./templates":17,"backbone":13,"underscore":15}],5:[function(require,module,exports){
+},{"./model":11,"./templates":17,"backbone":13,"jquery":14,"underscore":15}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 var LikesModel = require('./likesModel');
 
@@ -247,6 +249,7 @@ var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
   urlRoot: 'http://tiny-tiny.herokuapp.com/collections/thriller2',
+
   initialize: function() {
     console.log('It is alive');
     // console.log(this.model);
@@ -263,6 +266,7 @@ module.exports = Backbone.Model.extend({
 },{"backbone":13}],12:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
+var $ = require('jquery'); 
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
@@ -299,7 +303,7 @@ module.exports = Backbone.View.extend({
   }
 })
 
-},{"./templates":17,"backbone":13,"underscore":15}],13:[function(require,module,exports){
+},{"./templates":17,"backbone":13,"jquery":14,"underscore":15}],13:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.3.2
 
@@ -13619,6 +13623,7 @@ return jQuery;
 
 },{}],16:[function(require,module,exports){
 var Backbone = require('backbone');
+var $ = require('jquery');
 var LikesCollection = require('./likesCollection');
 var LikesCollectionView = require('./LikesCollectionView');
 var ThrillerCollection = require('./collection');
@@ -13626,6 +13631,11 @@ var ThrillerCollectionView = require('./collectionView');
 var LoginView = require('./loginFormView');
 var FormView = require('./formview');
 
+$(document).ready(function() {
+  $('.signIn').on('click', function() {
+
+  });
+},
 module.exports = Backbone.Router.extend({
   subview: null,
   routes: {
@@ -13634,43 +13644,39 @@ module.exports = Backbone.Router.extend({
     "likes": "likes",
     "login": "login"
   },
-  // likes: function() {
-  //   var that = this;
-  //   var likesCol = new LikesCollection();
-  //   new LoginView();
-  //   //collection likesCol is still empty
-  //   likesCol.fetch().then(function(data) {
-  //     console.log(likesCol.models.length); //data is ready
-  //     that.renderSubview(new LikesCollectionView({collection: likesCol}));
-  //   });
-  //
-  // },
+  likes: function() {
+    var that = this;
+    var likesCol = new LikesCollection();
+    new LoginView();
+    //collection likesCol is still empty
+    likesCol.fetch().then(function(data) {
+      console.log(likesCol.models.length); //data is ready
+      that.renderSubview(new LikesCollectionView({collection: likesCol}));
+    });
+
+  },
   homepage: function() {
     var that = this;
     var thrillerCol = new ThrillerCollection();
-
-    new LoginView()
-
+    new LoginView();
     thrillerCol.fetch().then(function(data) {
-      console.log(thrillerCol.models.length); //data is ready
+      // console.log(thrillerCol.models.length); //data is ready
       that.renderSubview(new ThrillerCollectionView({collection: thrillerCol}));
-      var newForm = new FormView({});
+      var newForm = new FormView({collection: thrillerCol});
       newForm.render();
     });
   },
   login: function() {
     var that = this;
-
     that.renderSubview(new LoginView({}));
   },
   renderSubview: function(subview) {
     this.subview && this.subview.remove();
     this.subview = subview;
   }
+}));
 
-});
-
-},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13}],17:[function(require,module,exports){
+},{"./LikesCollectionView":1,"./collection":2,"./collectionView":3,"./formview":4,"./likesCollection":5,"./loginFormView":8,"backbone":13,"jquery":14}],17:[function(require,module,exports){
 module.exports = {
   createPost: [
     `<form class="form-inline">
