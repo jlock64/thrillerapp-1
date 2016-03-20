@@ -76,7 +76,7 @@ module.exports = Backbone.View.extend({
      title: this.$el.find('input[name="title"]').val(),
      location: this.$el.find('input[name="location"]').val(),
      summary: this.$el.find('textarea').val(),
-     image: this.$el.find('input[name="image"]').val(),
+     photo: this.$el.find('input[name="image"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
@@ -266,7 +266,7 @@ module.exports = Backbone.Model.extend({
 },{"backbone":13}],12:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
-var $ = require('jquery'); 
+var $ = require('jquery');
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
@@ -278,13 +278,12 @@ module.exports = Backbone.View.extend({
   },
   editThrill: function(event){
     event.preventDefault();
-
     this.model.set({
       name: this.$el.find('name').val(),
       title: this.$el.find('title').val(),
       location: this.$el.find('location').val(),
       summary: this.$el.find('summary').val(),
-      image: this.$el.find('image').val(),
+      photo: this.$el.find('image').val(),
     })
   },
   toggleEdit: function(){
