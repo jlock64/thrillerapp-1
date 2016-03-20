@@ -9,11 +9,17 @@ header {
    header::after {
      clear: both;
    }
+   .homeBtn:hover {
+     cursor: pointer;
+   }
    h1 {
      font-family: Tahoma;
    }
    i.fa.fa-bars {
      font-size: 20px;
+   }
+   .fa-sign-in:before {
+     margin-right: 5px;
    }
    span.menu {
      float: right;
@@ -21,7 +27,7 @@ header {
    span:hover {
      cursor: pointer;
    }
-   span.signIn {
+   span#signIn {
      float: left;
    }
  }
@@ -42,13 +48,12 @@ header {
      display: block;
      padding-right: 5px;
      padding-left: 5px;
-   }
-   a {
      color: #000;
      text-decoration: none;
      font-size: 16px;
    }
-   a:hover {
+   li:hover {
+     cursor: pointer;
      color: #777;
    }
  }

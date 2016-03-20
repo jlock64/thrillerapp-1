@@ -4,7 +4,7 @@ var collectionView = require('./collectionView');
 
 module.exports = Backbone.Collection.extend({
  model: Model,
- url: '/thrill',
+ url: "http://tiny-tiny.herokuapp.com/collections/thriller2",
  initialize: function (){
    console.log("This is a thriller collection");
  }
