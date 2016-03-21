@@ -88,13 +88,18 @@ header {
     font-size: 20px; }
   header .fa-sign-in:before {
     margin-right: 5px; }
+  header .fa-sign-out:before {
+    margin-right: 5px; }
   header span.menu {
     float: right;
-    margin-left: 35px; }
+    margin-left: 125px; }
   header span:hover {
     cursor: pointer; }
   header span#signIn {
     float: left; }
+  header span#signOut {
+    float: left;
+    margin-left: 15px; }
 
 .dropdown {
   position: absolute;

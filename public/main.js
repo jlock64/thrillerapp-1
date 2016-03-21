@@ -45,8 +45,8 @@ $(document).ready(function() {
   });
 
   // edit button
-  $('.edit').on('click', function() {
-    $('.editSection').removeClass('hidden');
+  $('body').on('click', '#edit', function() {
+    $('.editSection').toggleClass('hidden');
   });
 
   // home button

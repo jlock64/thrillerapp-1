@@ -12,7 +12,10 @@ module.exports = Backbone.View.extend({
   addOne: function(el) {
     var modelView = new LikesModelView({model: el});
     this.$el.append(modelView.render().el);
-  },
+    //add this to bing the items to the page
+    this.collection.bind('add', this.add);
+    this.collection.bind('remove', this.remove);
+},
   addAll: function() {
     this.$el.html('');
     _.each(this.collection.models, this.addOne, this);
@@ -76,7 +79,7 @@ module.exports = Backbone.View.extend({
      title: this.$el.find('input[name="title"]').val(),
      location: this.$el.find('input[name="location"]').val(),
      summary: this.$el.find('textarea').val(),
-     photo: this.$el.find('input[name="image"]').val(),
+     photo: this.$el.find('input[name="photo"]').val(),
    };
    var myModel = new Model(objToSave);
    myModel.save();
@@ -235,8 +238,8 @@ $(document).ready(function() {
   });
 
   // edit button
-  $('.edit').on('click', function() {
-    $('.editSection').removeClass('hidden');
+  $('body').on('click', '#edit', function() {
+    $('.editSection').toggleClass('hidden');
   });
 
   // home button
@@ -274,16 +277,16 @@ module.exports = Backbone.View.extend({
   template: _.template(tmpl.post),
   events: {
     'click .delete': 'deleteThrill',
-    'click .edit': 'editThrill',
+    'click #edit': 'editThrill',
   },
   editThrill: function(event){
     event.preventDefault();
     this.model.set({
-      name: this.$el.find('name').val(),
-      title: this.$el.find('title').val(),
-      location: this.$el.find('location').val(),
-      summary: this.$el.find('summary').val(),
-      photo: this.$el.find('image').val(),
+      name: this.$el.find('.nameEdit').val(),
+      title: this.$el.find('.titleEdit').val(),
+      location: this.$el.find('.locationEdit').val(),
+      summary: this.$el.find('.summaryEdit').val(),
+      photo: this.$el.find('.imageEdit').val(),
     })
   },
   toggleEdit: function(){
@@ -13683,7 +13686,7 @@ module.exports = {
          <input type="text" id="inputName" name="name" placeholder="name">
          <input type="text" id="inputTitle" name="title" placeholder="title">
          <input type="text" id="inputLocation" name="location" placeholder="location">
-         <input type="text" id="inputFile" name="image" placeholder="enter url">
+         <input type="text" id="inputFile" name="photo" placeholder="enter url">
          <textarea name="summary" rows="8" cols="40" placeholder="Add your thriller experience here"></textarea>
        <button type="submit" id="createButton" class="btn btn-default createButton" value="create">Create Thriller</button>
      </form>`
@@ -13692,7 +13695,7 @@ module.exports = {
   post: [
     `<div class="postContainer">
       <div class="imgWrapper">
-      <img src="<%= image %>"
+      <img src="<%= photo %>"
       </div>
       <h4 class="name" ><%= name %></h4>
       <h4 class="title"><%= title %></h1>
@@ -13701,16 +13704,16 @@ module.exports = {
       <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
-      <button class="btn btn-danger edit" type="submit">Edit</button>
-      <button class="btn btn-warning delete" type="submit">Delete</button>
+      <button class="btn btn-warning" id="edit" type="submit">Edit</button>
+      <button class="btn btn-danger delete" type="submit">Delete</button>
       </div>
     </div>
     <div class="editSection hidden">
-    <input type="text" name="name" placeholder="<%= name %>">
-     <input type="text" name="title" placeholder="<%= title %>">
-     <input type="text" name="location" placeholder="<%= location %>">
-     <input type="text" name="image" placeholder="imageUrl">
-     <textarea name="summary" rows="8" cols="40" placeholder="Update your thriller here"></textarea></div>`
+    <input type="text" name="name" class="nameEdit" placeholder="<%= name %>">
+     <input type="text" name="title" class="titleEdit" placeholder="<%= title %>">
+     <input type="text" name="location" class="locationEdit" placeholder="<%= location %>">
+     <input type="text" name="image" class="imageEdit" placeholder="<%= photo %>">
+     <textarea name="summary" class="summaryEdit" rows="8" cols="40" placeholder="<%= summary %>"></textarea></div>`
   ].join(''),
 
   // editPost: [

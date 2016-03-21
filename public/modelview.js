@@ -8,16 +8,16 @@ module.exports = Backbone.View.extend({
   template: _.template(tmpl.post),
   events: {
     'click .delete': 'deleteThrill',
-    'click .edit': 'editThrill',
+    'click #edit': 'editThrill',
   },
   editThrill: function(event){
     event.preventDefault();
     this.model.set({
-      name: this.$el.find('name').val(),
-      title: this.$el.find('title').val(),
-      location: this.$el.find('location').val(),
-      summary: this.$el.find('summary').val(),
-      photo: this.$el.find('image').val(),
+      name: this.$el.find('.nameEdit').val(),
+      title: this.$el.find('.titleEdit').val(),
+      location: this.$el.find('.locationEdit').val(),
+      summary: this.$el.find('.summaryEdit').val(),
+      photo: this.$el.find('.imageEdit').val(),
     })
   },
   toggleEdit: function(){

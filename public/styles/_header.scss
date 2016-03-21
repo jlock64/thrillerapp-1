@@ -21,15 +21,22 @@ header {
    .fa-sign-in:before {
      margin-right: 5px;
    }
+   .fa-sign-out:before {
+     margin-right: 5px;
+   }
    span.menu {
      float: right;
-     margin-left: 35px;
+     margin-left: 125px;
    }
    span:hover {
      cursor: pointer;
    }
    span#signIn {
      float: left;
+   }
+   span#signOut {
+     float: left;
+     margin-left: 15px;
    }
  }
  .dropdown {
