@@ -23,16 +23,16 @@ module.exports = {
       <p class="summary"><%= summary %></p>
       </div>
       <div class="buttonWrapper">
-      <button class="btn btn-danger edit" type="submit">Edit</button>
-      <button class="btn btn-warning delete" type="submit">Delete</button>
+      <button class="btn btn-warning" id="edit" type="submit">Edit</button>
+      <button class="btn btn-danger delete" type="submit">Delete</button>
       </div>
     </div>
     <div class="editSection hidden">
-    <input type="text" name="name" placeholder="<%= name %>">
-     <input type="text" name="title" placeholder="<%= title %>">
-     <input type="text" name="location" placeholder="<%= location %>">
-     <input type="text" name="image" placeholder="<%= photo %>">
-     <textarea name="summary" rows="8" cols="40" placeholder="<%= summary %>"></textarea></div>`
+    <input type="text" name="name" class="nameEdit" placeholder="<%= name %>">
+     <input type="text" name="title" class="titleEdit" placeholder="<%= title %>">
+     <input type="text" name="location" class="locationEdit" placeholder="<%= location %>">
+     <input type="text" name="image" class="imageEdit" placeholder="<%= photo %>">
+     <textarea name="summary" class="summaryEdit" rows="8" cols="40" placeholder="<%= summary %>"></textarea></div>`
   ].join(''),
 
   // editPost: [
