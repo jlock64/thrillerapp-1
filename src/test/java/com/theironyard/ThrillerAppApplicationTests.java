@@ -49,10 +49,6 @@ public class ThrillerAppApplicationTests {
 
 	@Before
 	public void before() {
-//		users.deleteAll();
-//		thrills.deleteAll();
-//		photos.deleteAll();
-//		favorites.deleteAll();
 		mockMvc = MockMvcBuilders.webAppContextSetup(wap).build();
 	}
 
@@ -74,7 +70,6 @@ public class ThrillerAppApplicationTests {
 
     @Test
     public void test2DeleteUser() throws Exception {
-//        test1AddUser();
         mockMvc.perform(
                 MockMvcRequestBuilders.delete("/user/1")
         );

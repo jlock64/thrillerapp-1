@@ -51,37 +51,22 @@ public class ThrillerAppController {
         dbui.stop();
     }
 
-//    @PostConstruct
-//    public void init() throws PasswordStorage.CannotPerformOperationException {
-//        User user = new User();
-//        user.setName("Alice");
-//        user.setPassword(PasswordStorage.createHash("password"));
-//        users.save(user);
-//    }
     @RequestMapping(path = "/user", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session) throws Exception {
-        if (users.findByName(user.getName())==null) {
+        if (users.findByName(user.getName()) == null) {
             user.setPassword(PasswordStorage.createHash(user.getPassword()));
             users.save(user);
             session.setAttribute("name", user.getName());
-        }
-        else if (users.findByName(user.getName())!=null) {
+        } else if (users.findByName(user.getName()) != null) {
             User existing = users.findByName(user.getName());
             if (PasswordStorage.verifyPassword(user.getPassword(), existing.getPassword())) {
                 session.setAttribute("name", user.getName());
-            }
-            else if (!PasswordStorage.verifyPassword(user.getPassword(), existing.getPassword())) {
+            } else if (!PasswordStorage.verifyPassword(user.getPassword(), existing.getPassword())) {
                 throw new Exception("Username and Password do not match");
             }
         }
         return user;
     }
-
-//    @RequestMapping(path = "/login", method = RequestMethod.GET)
-//    public User getLogin(HttpSession session) {
-//        String name = (String) session.getAttribute("name");
-//        return users.findByName(name);
-//    }
 
     @RequestMapping(path = "/logout", method = RequestMethod.POST)
     public void logout(HttpSession session) {
@@ -92,12 +77,6 @@ public class ThrillerAppController {
     public List<User> getUsers() {
         return (List<User>) users.findAll();
     }
-
-//    @RequestMapping(path = "/user", method = RequestMethod.POST)
-//    public void addUser(@RequestBody User user) throws PasswordStorage.CannotPerformOperationException {
-//        user.setPassword(PasswordStorage.createHash(user.getPassword()));
-//        users.save(user);
-//    }
 
     @RequestMapping(path = "/user/{id}", method = RequestMethod.PUT)
     public void updateUser(@RequestBody User user, @PathVariable("id") int id) {
@@ -153,13 +132,6 @@ public class ThrillerAppController {
             favorites.save(new Favorite(user, thrill));
         }
     }
-
-
-    //need a Put route for favorite? to be able to toggle/edit whether or not you still "favorite" something
-
-    //need a Get route for favorite to findAll? to be able to get the total amount of favorites for a thrill item and then rank by amount of favorites Ascending order
-
-    //need the following routes for photo: get(one), get(all), delete ? don't need put since you dont edit photo uploads.
 }
 
 
