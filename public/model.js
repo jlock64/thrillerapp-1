@@ -13,5 +13,6 @@ module.exports = Backbone.Model.extend({
     location: '',
     summary: '',
     image: 'http://www.fillmurray.com/250/250',
+    date: "2016-03-21"
   }
 });
